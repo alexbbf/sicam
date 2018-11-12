@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+
+	<ui:define name="titulo">Cadastro de Militar</ui:define>
+
+	<ui:define name="subtitulo">Cadastro de Militar</ui:define>
+
+	<ui:define name="conteudo">
+		<h:form>
+			<div class="panel panel-default">
+				<p:growl globalOnly="false" />
+				<p:autoUpdate/>
+				<div class="panel-heading">Dados do Militar</div>
+				<div class="panel-body">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<p:outputLabel for="nomeMilitar" value="Nome completo" />
+							<p:inputText id="nomeMilitar"
+								value="#{militarMB.militar.nome}" styleClass="form-control" />
+						</div>
+						
+					</div>
+				
+					<p:commandButton id="salvarMilitar" value="SALVAR"
+						action="#{militarMB.salvar}" styleClass="btn btn-default"
+						validateClient="true" ajax="false" />
+				</div>
+
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
