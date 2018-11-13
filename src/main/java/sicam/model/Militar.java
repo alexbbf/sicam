@@ -32,23 +32,23 @@ public class Militar {
 	private Date dataNascimento;
 
 	@Enumerated(EnumType.STRING)
-	private TipoSanguineo tipoSanquino;
+	private TipoSanguineo tipoSanquineo;
 
 	@Enumerated(EnumType.STRING)
 	private FatorRh fatorRh;
 
-	@Enumerated(EnumType.STRING)
-	private EstadoCivil estadoCivil;
+	private String naturalidade;
 
 	private String nomePai;
 
 	private String nomeMae;
+	
+	@Enumerated(EnumType.STRING)
+	private EstadoCivil estadoCivil;
+
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
-
-	@ManyToOne
-	private Municipio naturalidade;
 
 	private String email;
 
@@ -74,21 +74,20 @@ public class Militar {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private RegistroGeral rg;
-	
+
 	private String cpf;
-	
+
 	@ManyToOne
 	private DadosBancarios dadosBancarios;
-	
+
 	private String nomeGuerra;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Vinculo vinculo;
-	
+
 	private String matricula;
 
 	private String siape;
-	
 
 	public Integer getId() {
 		return id;
@@ -147,11 +146,11 @@ public class Militar {
 	}
 
 	public TipoSanguineo getTipoSanquino() {
-		return tipoSanquino;
+		return tipoSanquineo;
 	}
 
 	public void setTipoSanquino(TipoSanguineo tipoSanquino) {
-		this.tipoSanquino = tipoSanquino;
+		this.tipoSanquineo = tipoSanquino;
 	}
 
 	public FatorRh getFatorRh() {
@@ -178,11 +177,19 @@ public class Militar {
 		this.endereco = endereco;
 	}
 
-	public Municipio getNaturalidade() {
+	public TipoSanguineo getTipoSanquineo() {
+		return tipoSanquineo;
+	}
+
+	public void setTipoSanquineo(TipoSanguineo tipoSanquineo) {
+		this.tipoSanquineo = tipoSanquineo;
+	}
+
+	public String getNaturalidade() {
 		return naturalidade;
 	}
 
-	public void setNaturalidade(Municipio naturalidade) {
+	public void setNaturalidade(String naturalidade) {
 		this.naturalidade = naturalidade;
 	}
 
@@ -272,6 +279,54 @@ public class Militar {
 
 	public void setRg(RegistroGeral rg) {
 		this.rg = rg;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
+
+	public DadosBancarios getDadosBancarios() {
+		return dadosBancarios;
+	}
+
+	public void setDadosBancarios(DadosBancarios dadosBancarios) {
+		this.dadosBancarios = dadosBancarios;
+	}
+
+	public String getNomeGuerra() {
+		return nomeGuerra;
+	}
+
+	public void setNomeGuerra(String nomeGuerra) {
+		this.nomeGuerra = nomeGuerra;
+	}
+
+	public Vinculo getVinculo() {
+		return vinculo;
+	}
+
+	public void setVinculo(Vinculo vinculo) {
+		this.vinculo = vinculo;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
+	public String getSiape() {
+		return siape;
+	}
+
+	public void setSiape(String siape) {
+		this.siape = siape;
 	}
 
 	@Override
