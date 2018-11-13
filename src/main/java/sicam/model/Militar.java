@@ -2,45 +2,93 @@ package sicam.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 public class Militar {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	
+
 	private String nome;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
-	
+
 	@Enumerated(EnumType.STRING)
 	private Raca raca;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date dataNascimento;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TipoSanguineo tipoSanquino;
-	
+
 	@Enumerated(EnumType.STRING)
 	private FatorRh fatorRh;
-	
+
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
-	
+
 	private String nomePai;
 
 	private String nomeMae;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Endereco endereco;
+
+	@ManyToOne
+	private Municipio naturalidade;
+
+	private String email;
+
+	private String telefoneFixo;
+
+	private String telefoneCelular1;
+
+	private String telefoneCelular2;
+
+	private String contatoEmergencia;
+
+	private String telefoneContatoEmergencia;
+
+	private String pisPasep;
+
+	private String ctps;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private TituloEleitor tituloEleitor;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private CarteiraHabilitacao cnh;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private RegistroGeral rg;
+	
+	private String cpf;
+	
+	@ManyToOne
+	private DadosBancarios dadosBancarios;
+	
+	private String nomeGuerra;
+	
+	@Enumerated(EnumType.STRING)
+	private Vinculo vinculo;
+	
+	private String matricula;
+
+	private String siape;
+	
 
 	public Integer getId() {
 		return id;
@@ -57,8 +105,6 @@ public class Militar {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
 
 	public Sexo getSexo() {
 		return sexo;
@@ -100,6 +146,134 @@ public class Militar {
 		this.nomeMae = nomeMae;
 	}
 
+	public TipoSanguineo getTipoSanquino() {
+		return tipoSanquino;
+	}
+
+	public void setTipoSanquino(TipoSanguineo tipoSanquino) {
+		this.tipoSanquino = tipoSanquino;
+	}
+
+	public FatorRh getFatorRh() {
+		return fatorRh;
+	}
+
+	public void setFatorRh(FatorRh fatorRh) {
+		this.fatorRh = fatorRh;
+	}
+
+	public EstadoCivil getEstadoCivil() {
+		return estadoCivil;
+	}
+
+	public void setEstadoCivil(EstadoCivil estadoCivil) {
+		this.estadoCivil = estadoCivil;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
+	}
+
+	public Municipio getNaturalidade() {
+		return naturalidade;
+	}
+
+	public void setNaturalidade(Municipio naturalidade) {
+		this.naturalidade = naturalidade;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getTelefoneFixo() {
+		return telefoneFixo;
+	}
+
+	public void setTelefoneFixo(String telefoneFixo) {
+		this.telefoneFixo = telefoneFixo;
+	}
+
+	public String getTelefoneCelular1() {
+		return telefoneCelular1;
+	}
+
+	public void setTelefoneCelular1(String telefoneCelular1) {
+		this.telefoneCelular1 = telefoneCelular1;
+	}
+
+	public String getTelefoneCelular2() {
+		return telefoneCelular2;
+	}
+
+	public void setTelefoneCelular2(String telefoneCelular2) {
+		this.telefoneCelular2 = telefoneCelular2;
+	}
+
+	public String getContatoEmergencia() {
+		return contatoEmergencia;
+	}
+
+	public void setContatoEmergencia(String contatoEmergencia) {
+		this.contatoEmergencia = contatoEmergencia;
+	}
+
+	public String getTelefoneContatoEmergencia() {
+		return telefoneContatoEmergencia;
+	}
+
+	public void setTelefoneContatoEmergencia(String telefoneContatoEmergencia) {
+		this.telefoneContatoEmergencia = telefoneContatoEmergencia;
+	}
+
+	public String getPisPasep() {
+		return pisPasep;
+	}
+
+	public void setPisPasep(String pisPasep) {
+		this.pisPasep = pisPasep;
+	}
+
+	public String getCtps() {
+		return ctps;
+	}
+
+	public void setCtps(String ctps) {
+		this.ctps = ctps;
+	}
+
+	public TituloEleitor getTituloEleitor() {
+		return tituloEleitor;
+	}
+
+	public void setTituloEleitor(TituloEleitor tituloEleitor) {
+		this.tituloEleitor = tituloEleitor;
+	}
+
+	public CarteiraHabilitacao getCnh() {
+		return cnh;
+	}
+
+	public void setCnh(CarteiraHabilitacao cnh) {
+		this.cnh = cnh;
+	}
+
+	public RegistroGeral getRg() {
+		return rg;
+	}
+
+	public void setRg(RegistroGeral rg) {
+		this.rg = rg;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -124,7 +298,5 @@ public class Militar {
 			return false;
 		return true;
 	}
-	
-	
 
 }
