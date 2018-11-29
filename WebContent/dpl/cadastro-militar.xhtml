@@ -1,120 +1,107 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?xml version="1.0" encoding='ISO-8859-1'?>
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/template.xhtml">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	template="/WEB-INF/templates/template.xhtml">
 
-	<ui:define name="titulo">Cadastro de Militar</ui:define>
+	<ui:define name="title">
+        CADASTRAR NOVO MILITAR
+    </ui:define>
 
-	<ui:define name="subtitulo">Cadastro de Militar</ui:define>
+	<ui:define name="description">
+	</ui:define>
 
-	<ui:define name="conteudo">
+	<ui:define name="body">
 		<h:form>
-			<div class="panel panel-default">
-				<p:growl globalOnly="false" />
+			<p:growl showDetail="true" life="3000">
 				<p:autoUpdate />
-				<div class="panel-heading">Dados bÃ¡sicos</div>
-				<div class="panel-body">
-					<div class="col-lg-6">
-						<div class="form-group">
-							<p:outputLabel for="nomeMilitar" value="Nome completo" />
-							<p:inputText id="nomeMilitar" value="#{militarMB.militar.nome}"
-								styleClass="form-control" required="true"
-								requiredMessage="Campo NOME Ã© obrigatÃ³rio" />
-						</div>
+			</p:growl>
+			<div class="ui-fluid">
 
-						<div class="form-group">
-							<p:outputLabel for="sexo" value="Sexo" />
-							<h:selectOneRadio id="sexo" value="#{militarMB.militar.sexo}" 
-								required="true" requiredMessage="Campo SEXO Ã© obrigatÃ³rio">
-								<f:selectItems value="#{aplicacaoMB.sexos}" var="_s"
-									itemLabel="#{_s.label}" itemValue="#{_s}" />
-							</h:selectOneRadio>
-						</div>
+				<p:panelGrid columns="4"
+					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+					layout="grid" styleClass="ui-fluid card">
+					<p:outputLabel for="nomeMilitar" value="Nome completo" />
+					<p:inputText id="nomeMilitar" value="#{militarMB.militar.nome}"
+						required="true" requiredMessage="Campo NOME é obrigatório" />
 
-						<div class="form-group">
-							<p:outputLabel value="RaÃ§a" for="raca" />
-							<h:selectOneMenu id="raca" value="#{militarMB.militar.raca}" styleClass="form-control"
-								required="true" requiredMessage="Campo RAÃ‡A Ã© obrigatÃ³rio">
-								<f:selectItems value="#{aplicacaoMB.racas}" var="_r"
-									itemLabel="#{_r.label}" itemValue="#{_r}" />
-							</h:selectOneMenu>
-						</div>
+					<p:outputLabel for="sexo" value="Sexo" />
+					<p:selectOneRadio id="sexo" value="#{militarMB.militar.sexo}"
+						required="true" requiredMessage="Campo SEXO é obrigatório">
+						<f:selectItems value="#{aplicacaoMB.sexos}" var="_s"
+							itemLabel="#{_s.label}" itemValue="#{_s}" />
+					</p:selectOneRadio>
 
-						<div class="form-group">
-							<p:outputLabel value="Data de Nascimento" for="datanascimento" />
-							<p:inputMask id="datanascimento"
-								value="#{militarMB.militar.dataNascimento}" mask="99/99/9999"
-								required="true" styleClass="form-control"
-								requiredMessage="Campo DATA DE NASCIMENTO Ã© obrigatÃ³rio">
-								<f:convertDateTime pattern="dd/MM/yyyy" />
-							</p:inputMask>
-						</div>
-						<div class="form-group">
-							<p:outputLabel value="Tipo sanguÃ­neo:" for="tiposanguineo" />
-							<h:panelGroup>
-								<h:selectOneMenu id="tiposanguineo"
-									value="#{militarMB.militar.tipoSanquino}" required="true"
-									requiredMessage="Campo obrigatÃ³rio"
-									converterMessage="Tipo invÃ¡lido" >
-									<f:selectItem noSelectionOption="true" itemLabel="" />
-									<f:selectItems value="#{aplicacaoMB.tiposSanguineos}" var="_t"
-										itemLabel="#{_t}" itemValue="#{_t}" />
-								</h:selectOneMenu>
-								<h:selectOneMenu id="fatorrh"
-									value="#{militarMB.militar.fatorRh}" required="true"
-									requiredMessage="Campo obrigatÃ³rio"
-									converterMessage="Fator invÃ¡lido">
-									<f:selectItem noSelectionOption="true" itemLabel="" />
-									<f:selectItems value="#{aplicacaoMB.fatoresRH}" var="_f"
-										itemLabel="#{_f.label}" itemValue="#{_f}" />
-								</h:selectOneMenu>
-							</h:panelGroup>
-						</div>
+					<p:outputLabel value="Raça" for="raca" />
+					<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}"
+						required="true" requiredMessage="Campo RAÇA é obrigatório">
+						<f:selectItems value="#{aplicacaoMB.racas}" var="_r"
+							itemLabel="#{_r.label}" itemValue="#{_r}" />
+					</p:selectOneMenu>
 
-						<div class="form-group">
-							<p:outputLabel for="naturalidade" value="Naturalidade" />
-							<h:inputText id="naturalidade"
-								value="#{militarMB.militar.naturalidade}" required="true"
-								requiredMessage="Campo NATURALIDADE Ã© obrigatÃ³rio" styleClass="form-control"/>
-						</div>
+					<p:outputLabel value="Data de Nascimento" for="datanascimento" />
+					<p:inputMask id="datanascimento"
+						value="#{militarMB.militar.dataNascimento}" mask="99/99/9999"
+						required="true" styleClass="form-control"
+						requiredMessage="Campo DATA DE NASCIMENTO é obrigatório">
+						<f:convertDateTime pattern="dd/MM/yyyy" />
+					</p:inputMask>
 
-						<div class="form-group">
-							<p:outputLabel for="email" value="Email" />
-							<p:inputText id="email" value="#{militarMB.militar.email}"
-								styleClass="form-control" required="true"
-								requiredMessage="Campo EMAIL Ã© obrigatÃ³rio"/>
-						</div>
+					<p:outputLabel value="Tipo sanguíneo:" for="tiposanguineo" />
+					<h:panelGrid columns="2"
+						columnClasses="ui-grid-col-2,ui-grid-col-2">
+						<p:selectOneMenu id="tiposanguineo"
+							value="#{militarMB.militar.tipoSanquino}" required="true"
+							requiredMessage="Campo obrigatório"
+							converterMessage="Tipo inválido">
+							<f:selectItem noSelectionOption="true" itemLabel="" />
+							<f:selectItems value="#{aplicacaoMB.tiposSanguineos}" var="_t"
+								itemLabel="#{_t}" itemValue="#{_t}" />
+						</p:selectOneMenu>
+						<p:selectOneMenu id="fatorrh" value="#{militarMB.militar.fatorRh}"
+							required="true" requiredMessage="Campo obrigatório"
+							converterMessage="Fator inválido">
+							<f:selectItem noSelectionOption="true" itemLabel="" />
+							<f:selectItems value="#{aplicacaoMB.fatoresRH}" var="_f"
+								itemLabel="#{_f.label}" itemValue="#{_f}" />
+						</p:selectOneMenu>
+					</h:panelGrid>
 
-						<div class="form-group">
-							<p:outputLabel value="Telefone fixo:" for="telfixo" />
-							<p:inputMask id="telfixo" mask="(99)9999-9999"
-								value="#{militarMB.militar.telefoneFixo}" required="false" styleClass="form-control"/>
-						</div>
-						
-						<div class="form-group">
-							<p:outputLabel value="Celular:" for="celular1" />
-							<p:inputMask id="celular1" mask="(99)9-9999-9999"
-								value="#{militarMB.militar.telefoneCelular1}" required="false" styleClass="form-control"/>
-						</div>
-						
-						<div class="form-group">
-							<p:outputLabel value="Celular:" for="celular2" />
-							<p:inputMask id="celular2" mask="(99)9-9999-9999"
-								value="#{militarMB.militar.telefoneCelular2}" required="false" styleClass="form-control"/>
-						</div>
+					<p:outputLabel for="naturalidade" value="Naturalidade" />
+					<p:inputText id="naturalidade"
+						value="#{militarMB.militar.naturalidade}" required="true"
+						requiredMessage="Campo NATURALIDADE é obrigatório" />
 
-					</div>
-					<div class="col-lg-12">
+					<p:outputLabel for="email" value="Email" />
+					<p:inputText id="email" value="#{militarMB.militar.email}"
+						required="true" requiredMessage="Campo EMAIL é obrigatório" />
 
-						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}" styleClass="btn btn-default"
-							validateClient="true" ajax="false" />
-					</div>
-				</div>
+
+					<p:outputLabel value="Telefone fixo:" for="telfixo" />
+					<p:inputMask id="telfixo" mask="(99)9999-9999"
+						value="#{militarMB.militar.telefoneFixo}" required="false" />
+
+					<p:outputLabel value="Celular:" for="celular1" />
+					<p:inputMask id="celular1" mask="(99)9-9999-9999"
+						value="#{militarMB.militar.telefoneCelular1}" required="false" />
+
+					<p:outputLabel value="Celular:" for="celular2" />
+					<p:inputMask id="celular2" mask="(99)9-9999-9999"
+						value="#{militarMB.militar.telefoneCelular2}" required="false" />
+					<p:spacer height="15px" />
+					<p:spacer height="1px" />
+					<p:spacer height="1px" />
+					<p:spacer height="1px" />
+					<p:commandButton id="salvarMilitar" value="SALVAR"
+						actionListener="#{militarMB.salvar}" styleClass="btn-primary"
+						icon="fa fa-save" validateClient="true" />
+				</p:panelGrid>
+
 
 			</div>
 		</h:form>
 	</ui:define>
+
 </ui:composition>
