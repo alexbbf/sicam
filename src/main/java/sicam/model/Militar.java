@@ -258,6 +258,9 @@ public class Militar {
 	}
 
 	public TituloEleitor getTituloEleitor() {
+		if(tituloEleitor == null){
+			tituloEleitor = new TituloEleitor();
+		}
 		return tituloEleitor;
 	}
 
@@ -266,6 +269,9 @@ public class Militar {
 	}
 
 	public CarteiraHabilitacao getCnh() {
+		if (cnh == null){
+			cnh = new CarteiraHabilitacao();
+		}
 		return cnh;
 	}
 
@@ -274,6 +280,9 @@ public class Militar {
 	}
 
 	public RegistroGeral getRg() {
+		if(rg == null){
+			rg = new RegistroGeral();
+		}
 		return rg;
 	}
 

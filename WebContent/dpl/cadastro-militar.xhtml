@@ -19,87 +19,203 @@
 				<p:autoUpdate />
 			</p:growl>
 			<div class="ui-fluid">
+				<p:tabView>
+					<p:tab title="Dados Basicos">
+						<p:panelGrid columns="4"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-fluid card">
+							<p:outputLabel for="nomeMilitar" value="Nome completo" />
+							<p:inputText id="nomeMilitar" value="#{militarMB.militar.nome}"
+								required="true" requiredMessage="Campo NOME é obrigatório" />
 
-				<p:panelGrid columns="4"
-					columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
-					layout="grid" styleClass="ui-fluid card">
-					<p:outputLabel for="nomeMilitar" value="Nome completo" />
-					<p:inputText id="nomeMilitar" value="#{militarMB.militar.nome}"
-						required="true" requiredMessage="Campo NOME é obrigatório" />
+							<p:outputLabel for="sexo" value="Sexo" />
+							<p:selectOneRadio id="sexo" value="#{militarMB.militar.sexo}"
+								required="true" requiredMessage="Campo SEXO é obrigatório">
+								<f:selectItems value="#{aplicacaoMB.sexos}" var="_s"
+									itemLabel="#{_s.label}" itemValue="#{_s}" />
+							</p:selectOneRadio>
 
-					<p:outputLabel for="sexo" value="Sexo" />
-					<p:selectOneRadio id="sexo" value="#{militarMB.militar.sexo}"
-						required="true" requiredMessage="Campo SEXO é obrigatório">
-						<f:selectItems value="#{aplicacaoMB.sexos}" var="_s"
-							itemLabel="#{_s.label}" itemValue="#{_s}" />
-					</p:selectOneRadio>
+							<p:outputLabel value="Raça" for="raca" />
+							<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}"
+								required="true" requiredMessage="Campo RAÇA é obrigatório">
+								<f:selectItems value="#{aplicacaoMB.racas}" var="_r"
+									itemLabel="#{_r.label}" itemValue="#{_r}" />
+							</p:selectOneMenu>
 
-					<p:outputLabel value="Raça" for="raca" />
-					<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}"
-						required="true" requiredMessage="Campo RAÇA é obrigatório">
-						<f:selectItems value="#{aplicacaoMB.racas}" var="_r"
-							itemLabel="#{_r.label}" itemValue="#{_r}" />
-					</p:selectOneMenu>
+							<p:outputLabel value="Data de Nascimento" for="datanascimento" />
+							<p:inputMask id="datanascimento"
+								value="#{militarMB.militar.dataNascimento}" mask="99/99/9999"
+								required="true" styleClass="form-control"
+								requiredMessage="Campo DATA DE NASCIMENTO é obrigatório">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputMask>
 
-					<p:outputLabel value="Data de Nascimento" for="datanascimento" />
-					<p:inputMask id="datanascimento"
-						value="#{militarMB.militar.dataNascimento}" mask="99/99/9999"
-						required="true" styleClass="form-control"
-						requiredMessage="Campo DATA DE NASCIMENTO é obrigatório">
-						<f:convertDateTime pattern="dd/MM/yyyy" />
-					</p:inputMask>
+							<p:outputLabel value="Tipo sanguíneo:" for="tiposanguineo" />
+							<h:panelGrid columns="2"
+								columnClasses="ui-grid-col-2,ui-grid-col-2">
+								<p:selectOneMenu id="tiposanguineo"
+									value="#{militarMB.militar.tipoSanquino}" required="true"
+									requiredMessage="Campo obrigatório"
+									converterMessage="Tipo inválido">
+									<f:selectItem noSelectionOption="true" itemLabel="" />
+									<f:selectItems value="#{aplicacaoMB.tiposSanguineos}" var="_t"
+										itemLabel="#{_t}" itemValue="#{_t}" />
+								</p:selectOneMenu>
+								<p:selectOneMenu id="fatorrh"
+									value="#{militarMB.militar.fatorRh}" required="true"
+									requiredMessage="Campo obrigatório"
+									converterMessage="Fator inválido">
+									<f:selectItem noSelectionOption="true" itemLabel="" />
+									<f:selectItems value="#{aplicacaoMB.fatoresRH}" var="_f"
+										itemLabel="#{_f.label}" itemValue="#{_f}" />
+								</p:selectOneMenu>
+							</h:panelGrid>
 
-					<p:outputLabel value="Tipo sanguíneo:" for="tiposanguineo" />
-					<h:panelGrid columns="2"
-						columnClasses="ui-grid-col-2,ui-grid-col-2">
-						<p:selectOneMenu id="tiposanguineo"
-							value="#{militarMB.militar.tipoSanquino}" required="true"
-							requiredMessage="Campo obrigatório"
-							converterMessage="Tipo inválido">
-							<f:selectItem noSelectionOption="true" itemLabel="" />
-							<f:selectItems value="#{aplicacaoMB.tiposSanguineos}" var="_t"
-								itemLabel="#{_t}" itemValue="#{_t}" />
-						</p:selectOneMenu>
-						<p:selectOneMenu id="fatorrh" value="#{militarMB.militar.fatorRh}"
-							required="true" requiredMessage="Campo obrigatório"
-							converterMessage="Fator inválido">
-							<f:selectItem noSelectionOption="true" itemLabel="" />
-							<f:selectItems value="#{aplicacaoMB.fatoresRH}" var="_f"
-								itemLabel="#{_f.label}" itemValue="#{_f}" />
-						</p:selectOneMenu>
-					</h:panelGrid>
+							<p:outputLabel for="naturalidade" value="Naturalidade" />
+							<p:inputText id="naturalidade"
+								value="#{militarMB.militar.naturalidade}" required="true"
+								requiredMessage="Campo NATURALIDADE é obrigatório" />
 
-					<p:outputLabel for="naturalidade" value="Naturalidade" />
-					<p:inputText id="naturalidade"
-						value="#{militarMB.militar.naturalidade}" required="true"
-						requiredMessage="Campo NATURALIDADE é obrigatório" />
-
-					<p:outputLabel for="email" value="Email" />
-					<p:inputText id="email" value="#{militarMB.militar.email}"
-						required="true" requiredMessage="Campo EMAIL é obrigatório" />
-
-
-					<p:outputLabel value="Telefone fixo:" for="telfixo" />
-					<p:inputMask id="telfixo" mask="(99)9999-9999"
-						value="#{militarMB.militar.telefoneFixo}" required="false" />
-
-					<p:outputLabel value="Celular:" for="celular1" />
-					<p:inputMask id="celular1" mask="(99)9-9999-9999"
-						value="#{militarMB.militar.telefoneCelular1}" required="false" />
-
-					<p:outputLabel value="Celular:" for="celular2" />
-					<p:inputMask id="celular2" mask="(99)9-9999-9999"
-						value="#{militarMB.militar.telefoneCelular2}" required="false" />
-					<p:spacer height="15px" />
-					<p:spacer height="1px" />
-					<p:spacer height="1px" />
-					<p:spacer height="1px" />
-					<p:commandButton id="salvarMilitar" value="SALVAR"
-						actionListener="#{militarMB.salvar}" styleClass="btn-primary"
-						icon="fa fa-save" validateClient="true" />
-				</p:panelGrid>
+							<p:outputLabel for="email" value="Email" />
+							<p:inputText id="email" value="#{militarMB.militar.email}"
+								required="true" requiredMessage="Campo EMAIL é obrigatório" />
 
 
+							<p:outputLabel value="Telefone fixo:" for="telfixo" />
+							<p:inputMask id="telfixo" mask="(99)9999-9999"
+								value="#{militarMB.militar.telefoneFixo}" required="false" />
+
+							<p:outputLabel value="Celular:" for="celular1" />
+							<p:inputMask id="celular1" mask="(99)9-9999-9999"
+								value="#{militarMB.militar.telefoneCelular1}" required="false" />
+
+							<p:outputLabel value="Celular:" for="celular2" />
+							<p:inputMask id="celular2" mask="(99)9-9999-9999"
+								value="#{militarMB.militar.telefoneCelular2}" required="false" />
+
+							<p:outputLabel for="nomePai" value="Nome do Pai" />
+							<p:inputText id="nomePai" value="#{militarMB.militar.nomePai}" />
+
+							<p:outputLabel for="nomeMae" value="Nome da Mãe" />
+							<p:inputText id="nomeMae" value="#{militarMB.militar.nomeMae}" />
+
+
+						</p:panelGrid>
+					</p:tab>
+
+					<p:tab title="Documentos">
+
+						<p:panelGrid columns="4"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-fluid card">
+							<p:outputLabel value="Número RG:" for="rg" />
+							<p:inputText id="rg" value="#{militarMB.militar.rg.numero}"
+								required="true" requiredMessage="Campo Número RG é obrigatório" />
+
+							<p:outputLabel value="Orgão expeditor:" for="orgaoexpeditor" />
+							<p:inputText id="orgaoexpeditor"
+								value="#{militarMB.militar.rg.orgaoExpeditor}" required="false"
+								requiredMessage="Campo  Orgão Expeditor é obrigatório" />
+
+							<p:outputLabel value="Data de expedição:" for="dataexpedicaorg" />
+							<p:calendar id="dataexpedicaorg"
+								value="#{militarMB.militar.rg.dataExpedicao}" locale="pt"
+								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
+								yearRange="c-70:c" required="false"
+								requiredMessage="Campo Data de expedição é obrigatório!">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:calendar>
+
+							<p:outputLabel value="CPF:" for="cpf" />
+							<p:inputMask id="cpf" mask="999.999.999-99"
+								value="#{militarMB.militar.cpf}" required="true"
+								requiredMessage="Campo CPF é obrigatório" />
+
+							<p:outputLabel value="PIS/PASEP:" for="pispasep" />
+							<p:inputText id="pispasep" value="#{militarMB.militar.pisPasep}"
+								required="false" requiredMessage="Campo PIS/PASEP é obrigatório" />
+
+							<p:outputLabel value="CTPS:" for="ctps" />
+							<p:inputText id="ctps" value="#{militarMB.militar.ctps}"
+								required="false" requiredMessage="Campo CTPS é obrigatório" />
+
+							<p:outputLabel value="Titulo de eleitor:" for="tituloeleitor" />
+							<p:inputText id="tituloeleitor"
+								value="#{militarMB.militar.tituloEleitor.numero}"
+								required="false"
+								requiredMessage="Campo  Título de eleitor obrigatório" />
+
+							<p:outputLabel value="Zona:" for="zona" />
+							<p:inputText id="zona"
+								value="#{militarMB.militar.tituloEleitor.zona}" required="false"
+								requiredMessage="Campo Zona é obrigatório" />
+
+							<p:outputLabel value="Seção:" for="secao" />
+							<p:inputText id="secao"
+								value="#{militarMB.militar.tituloEleitor.secao}"
+								required="false" requiredMessage="Campo Seção é obrigatório" />
+
+							<p:outputLabel value="Data de emissão:" for="dataemissaotitulo" />
+							<p:calendar id="dataemissaotitulo" styleClass="campo_data"
+								value="#{militarMB.militar.tituloEleitor.dataEmissao}"
+								locale="pt" navigator="true" pattern="dd/MM/yyyy"
+								mask="99/99/9999" yearRange="c-70:c" required="false"
+								requiredMessage="Campo Data de emissão é obrigatório!">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:calendar>
+
+							<p:outputLabel value="Num. Reg. CNH:" for="cnh" />
+							<p:inputText id="cnh"
+								value="#{militarMB.militar.cnh.numRegistro}" required="false"
+								requiredMessage="Campo Num CNH é obrigatório" />
+
+							<p:outputLabel value="Categoria CNH:" for="categoriacnh" />
+							<p:selectOneMenu id="categoriacnh"
+								value="#{militarMB.militar.cnh.categoria}" required="false"
+								requiredMessage="Campo obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{aplicacaoMB.categoriasCNH}" var="_c"
+									itemLabel="#{_c.label}" itemValue="#{_c}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Data de emissão CNH:" for="dataemissaocnh" />
+							<p:calendar id="dataemissaocnh"
+								value="#{militarMB.militar.cnh.dataEmissao}" locale="pt"
+								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
+								yearRange="c-70:c" required="false"
+								requiredMessage="Campo Data emissão é obrigatório!">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:calendar>
+
+							<p:outputLabel value="Data de validade CNH:"
+								for="datavalidadecnh" />
+							<p:calendar id="datavalidadecnh"
+								value="#{militarMB.militar.cnh.dataValidade}" locale="pt"
+								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
+								yearRange="c-70:c" required="false"
+								requiredMessage="Campo Data validade CNH é obrigatório!">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:calendar>
+						</p:panelGrid>
+					</p:tab>
+					<p:tab title="Documentos">
+						<p:panelGrid columns="4"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-fluid card">
+							<p:outputLabel value="Logradouro:" for="logradouro" />
+							<p:autoComplete id="logradouro" required="true"
+								forceSelection="false" requiredMessage="Campo Obrigatório!"
+								placeholder="Ex: Avenida Ville Roy"
+								value="#{militarMB.militar.endereco.logradouro}"
+								completeMethod="#{autoCompleteMB.autoCompleteLogradouro}" var="l"
+								itemLabel="#{l}" itemValue="#{l}" />
+
+						</p:panelGrid>
+					</p:tab>
+				</p:tabView>
+				<p:commandButton id="salvarMilitar" value="SALVAR"
+					actionListener="#{militarMB.salvar}" styleClass="btn-primary"
+					icon="fa fa-save" validateClient="true" />
 			</div>
 		</h:form>
 	</ui:define>
