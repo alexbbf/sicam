@@ -72,7 +72,7 @@
 							</h:panelGrid>
 
 							<p:outputLabel for="naturalidade" value="Naturalidade" />
-							<p:inputText id="naturalidade"
+							<p:inputText id="naturalidade" placeholder="Ex: Boa Vista - RR"
 								value="#{militarMB.militar.naturalidade}" required="true"
 								requiredMessage="Campo NATURALIDADE é obrigatório" />
 
@@ -226,11 +226,22 @@
 							<p:outputLabel for="complemento" value="Complemento" />
 							<p:inputText id="complemento"
 								value="#{militarMB.militar.endereco.complemento}"
-								required="false" requiredMessage="Campo Complemento é obrigatório" />
+								required="false"
+								requiredMessage="Campo Complemento é obrigatório" />
 
 							<p:outputLabel for="referencia" value="Referência" />
-							<p:inputText id="referencia" value="#{militarMB.militar.endereco.referencia}"
-								required="false" requiredMessage="Campo Referência é obrigatório" />
+							<p:inputText id="referencia"
+								value="#{militarMB.militar.endereco.referencia}"
+								required="false"
+								requiredMessage="Campo Referência é obrigatório" />
+
+							<p:outputLabel value="Município" for="municipio" />
+							<p:autoComplete id="municipio" required="true" forceSelection="true"
+								requiredMessage="Campo Município é Obrigatório!"
+								placeholder="Ex: Boa Vista" converter="entityConverter"
+								value="#{militarMB.militar.endereco.municipio}"
+								completeMethod="#{autoCompleteMB.autoCompleteMunicipioRR}" var="l"
+								itemLabel="#{l.descricao}" itemValue="#{l}" />
 
 						</p:panelGrid>
 					</p:tab>

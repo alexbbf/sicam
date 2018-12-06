@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 
 import sicam.dao.EnderecoDao;
 import sicam.model.Bairro;
+import sicam.model.Municipio;
 
 @LocalBean
 @Stateless
@@ -31,5 +32,9 @@ public class EnderecoBusiness {
 
 	public List<Bairro> autoCompleteBairro(String s) {
 		return dao.autoCompleteBairro(s);
+	}
+
+	public List<Municipio> autoCompleteMunicipioRR(String s) {
+		return dao.autoCompleteMunicipioRR(s);
 	}
 }
