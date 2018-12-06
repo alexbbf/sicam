@@ -7,6 +7,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 import sicam.business.EnderecoBusiness;
+import sicam.model.Bairro;
 
 @ManagedBean
 @ViewScoped
@@ -17,6 +18,10 @@ public class AutoCompleteMB {
 	
 	public List<String> autoCompleteLograoduro(String s){
 		return enderecoBusiness.autoCompleteLogradouro(s);
+	}
+	
+	public List<Bairro> autoCompleteBairro(String s){
+		return enderecoBusiness.autoCompleteBairro(s);
 	}
 
 }

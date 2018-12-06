@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import sicam.model.Bairro;
+
 public class EnderecoDao {
 
 	private EntityManager em;
@@ -21,6 +23,16 @@ public class EnderecoDao {
 				.createQuery(
 						"SELECT c.logradouro FROM Endereco c WHERE UPPER(TRANSLATE(c.logradouro,'ÁÃÂÀáãâàÉÈÊéêèÍìÓóÔôÕõÚúÇç','AAAAaaaaEEEeeeIiOoOoOoUuCc')) LIKE '"
 								+ s + "%'", String.class).getResultList();
+	}
+
+	public List<Bairro> autoCompleteBairro(String s) {
+		s = Normalizer.normalize(s, Normalizer.Form.NFD)
+				.replaceAll("[^\\p{ASCII}]", "").toUpperCase();
+
+		return em
+				.createQuery(
+						"SELECT b FROM Bairro b WHERE UPPER(TRANSLATE(b.descricao,'ÁÃÂÀáãâàÉÈÊéêèÍìÓóÔôÕõÚúÇç','AAAAaaaaEEEeeeIiOoOoOoUuCc')) LIKE '"
+								+ s + "%'", Bairro.class).getResultList();
 	}
 
 }

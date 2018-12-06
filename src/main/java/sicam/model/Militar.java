@@ -170,6 +170,9 @@ public class Militar {
 	}
 
 	public Endereco getEndereco() {
+		if(endereco == null){
+			endereco = new Endereco();
+		}
 		return endereco;
 	}
 

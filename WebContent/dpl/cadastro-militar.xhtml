@@ -50,7 +50,7 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</p:inputMask>
 
-							<p:outputLabel value="Tipo sanguíneo:" for="tiposanguineo" />
+							<p:outputLabel value="Tipo sanguíneo" for="tiposanguineo" />
 							<h:panelGrid columns="2"
 								columnClasses="ui-grid-col-2,ui-grid-col-2">
 								<p:selectOneMenu id="tiposanguineo"
@@ -81,15 +81,15 @@
 								required="true" requiredMessage="Campo EMAIL é obrigatório" />
 
 
-							<p:outputLabel value="Telefone fixo:" for="telfixo" />
+							<p:outputLabel value="Telefone fixo" for="telfixo" />
 							<p:inputMask id="telfixo" mask="(99)9999-9999"
 								value="#{militarMB.militar.telefoneFixo}" required="false" />
 
-							<p:outputLabel value="Celular:" for="celular1" />
+							<p:outputLabel value="Celular" for="celular1" />
 							<p:inputMask id="celular1" mask="(99)9-9999-9999"
 								value="#{militarMB.militar.telefoneCelular1}" required="false" />
 
-							<p:outputLabel value="Celular:" for="celular2" />
+							<p:outputLabel value="Celular" for="celular2" />
 							<p:inputMask id="celular2" mask="(99)9-9999-9999"
 								value="#{militarMB.militar.telefoneCelular2}" required="false" />
 
@@ -108,16 +108,16 @@
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 							layout="grid" styleClass="ui-fluid card">
-							<p:outputLabel value="Número RG:" for="rg" />
+							<p:outputLabel value="Número RG" for="rg" />
 							<p:inputText id="rg" value="#{militarMB.militar.rg.numero}"
 								required="true" requiredMessage="Campo Número RG é obrigatório" />
 
-							<p:outputLabel value="Orgão expeditor:" for="orgaoexpeditor" />
+							<p:outputLabel value="Orgão expeditor" for="orgaoexpeditor" />
 							<p:inputText id="orgaoexpeditor"
 								value="#{militarMB.militar.rg.orgaoExpeditor}" required="false"
 								requiredMessage="Campo  Orgão Expeditor é obrigatório" />
 
-							<p:outputLabel value="Data de expedição:" for="dataexpedicaorg" />
+							<p:outputLabel value="Data de expedição" for="dataexpedicaorg" />
 							<p:calendar id="dataexpedicaorg"
 								value="#{militarMB.militar.rg.dataExpedicao}" locale="pt"
 								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
@@ -126,36 +126,36 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</p:calendar>
 
-							<p:outputLabel value="CPF:" for="cpf" />
+							<p:outputLabel value="CPF" for="cpf" />
 							<p:inputMask id="cpf" mask="999.999.999-99"
 								value="#{militarMB.militar.cpf}" required="true"
 								requiredMessage="Campo CPF é obrigatório" />
 
-							<p:outputLabel value="PIS/PASEP:" for="pispasep" />
+							<p:outputLabel value="PIS/PASEP" for="pispasep" />
 							<p:inputText id="pispasep" value="#{militarMB.militar.pisPasep}"
 								required="false" requiredMessage="Campo PIS/PASEP é obrigatório" />
 
-							<p:outputLabel value="CTPS:" for="ctps" />
+							<p:outputLabel value="CTPS" for="ctps" />
 							<p:inputText id="ctps" value="#{militarMB.militar.ctps}"
 								required="false" requiredMessage="Campo CTPS é obrigatório" />
 
-							<p:outputLabel value="Titulo de eleitor:" for="tituloeleitor" />
+							<p:outputLabel value="Titulo de eleitor" for="tituloeleitor" />
 							<p:inputText id="tituloeleitor"
 								value="#{militarMB.militar.tituloEleitor.numero}"
 								required="false"
 								requiredMessage="Campo  Título de eleitor obrigatório" />
 
-							<p:outputLabel value="Zona:" for="zona" />
+							<p:outputLabel value="Zona" for="zona" />
 							<p:inputText id="zona"
 								value="#{militarMB.militar.tituloEleitor.zona}" required="false"
 								requiredMessage="Campo Zona é obrigatório" />
 
-							<p:outputLabel value="Seção:" for="secao" />
+							<p:outputLabel value="Seção" for="secao" />
 							<p:inputText id="secao"
 								value="#{militarMB.militar.tituloEleitor.secao}"
 								required="false" requiredMessage="Campo Seção é obrigatório" />
 
-							<p:outputLabel value="Data de emissão:" for="dataemissaotitulo" />
+							<p:outputLabel value="Data de emissão" for="dataemissaotitulo" />
 							<p:calendar id="dataemissaotitulo" styleClass="campo_data"
 								value="#{militarMB.militar.tituloEleitor.dataEmissao}"
 								locale="pt" navigator="true" pattern="dd/MM/yyyy"
@@ -164,12 +164,12 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</p:calendar>
 
-							<p:outputLabel value="Num. Reg. CNH:" for="cnh" />
+							<p:outputLabel value="Num. Reg. CNH" for="cnh" />
 							<p:inputText id="cnh"
 								value="#{militarMB.militar.cnh.numRegistro}" required="false"
 								requiredMessage="Campo Num CNH é obrigatório" />
 
-							<p:outputLabel value="Categoria CNH:" for="categoriacnh" />
+							<p:outputLabel value="Categoria CNH" for="categoriacnh" />
 							<p:selectOneMenu id="categoriacnh"
 								value="#{militarMB.militar.cnh.categoria}" required="false"
 								requiredMessage="Campo obrigatório">
@@ -178,7 +178,7 @@
 									itemLabel="#{_c.label}" itemValue="#{_c}" />
 							</p:selectOneMenu>
 
-							<p:outputLabel value="Data de emissão CNH:" for="dataemissaocnh" />
+							<p:outputLabel value="Data de emissão CNH" for="dataemissaocnh" />
 							<p:calendar id="dataemissaocnh"
 								value="#{militarMB.militar.cnh.dataEmissao}" locale="pt"
 								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
@@ -187,8 +187,7 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</p:calendar>
 
-							<p:outputLabel value="Data de validade CNH:"
-								for="datavalidadecnh" />
+							<p:outputLabel value="Data de validade CNH" for="datavalidadecnh" />
 							<p:calendar id="datavalidadecnh"
 								value="#{militarMB.militar.cnh.dataValidade}" locale="pt"
 								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
@@ -202,13 +201,36 @@
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 							layout="grid" styleClass="ui-fluid card">
-							<p:outputLabel value="Logradouro:" for="logradouro" />
+							<p:outputLabel value="Logradouro" for="logradouro" />
 							<p:autoComplete id="logradouro" required="true"
-								forceSelection="false" requiredMessage="Campo Obrigatório!"
+								forceSelection="false"
+								requiredMessage="Campo Logradouro é obrigatório!"
 								placeholder="Ex: Avenida Ville Roy"
 								value="#{militarMB.militar.endereco.logradouro}"
-								completeMethod="#{autoCompleteMB.autoCompleteLogradouro}" var="l"
-								itemLabel="#{l}" itemValue="#{l}" />
+								completeMethod="#{autoCompleteMB.autoCompleteLograoduro}"
+								var="l" itemLabel="#{l}" itemValue="#{l}" />
+
+							<p:outputLabel value="Bairro" for="bairro" />
+							<p:autoComplete id="bairro" required="true" forceSelection="true"
+								requiredMessage="Campo Bairro é Obrigatório!"
+								placeholder="Ex: Pricumã" converter="entityConverter"
+								value="#{militarMB.militar.endereco.bairro}"
+								completeMethod="#{autoCompleteMB.autoCompleteBairro}" var="l"
+								itemLabel="#{l.descricao}" itemValue="#{l}" />
+
+							<p:outputLabel value="CEP" for="cep" />
+							<p:inputMask id="cep" mask="99999-999"
+								value="#{militarMB.militar.endereco.cep}" required="false"
+								requiredMessage="Campo CEP é obrigatorio" />
+
+							<p:outputLabel for="complemento" value="Complemento" />
+							<p:inputText id="complemento"
+								value="#{militarMB.militar.endereco.complemento}"
+								required="false" requiredMessage="Campo Complemento é obrigatório" />
+
+							<p:outputLabel for="referencia" value="Referência" />
+							<p:inputText id="referencia" value="#{militarMB.militar.endereco.referencia}"
+								required="false" requiredMessage="Campo Referência é obrigatório" />
 
 						</p:panelGrid>
 					</p:tab>
