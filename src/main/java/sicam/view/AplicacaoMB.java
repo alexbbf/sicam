@@ -4,6 +4,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import sicam.model.CategoriaCNH;
+import sicam.model.EstadoCivil;
 import sicam.model.FatorRh;
 import sicam.model.Raca;
 import sicam.model.Sexo;
@@ -18,6 +19,7 @@ public class AplicacaoMB {
 	private TipoSanguineo[] tiposSanguineos = TipoSanguineo.values();
 	private FatorRh[] fatoresRH = FatorRh.values();
 	private CategoriaCNH[] categoriasCNH = CategoriaCNH.values();
+	private EstadoCivil[] estadosCivis = EstadoCivil.values();
 
 	public Sexo[] getSexos() {
 		return sexos;
@@ -37,6 +39,10 @@ public class AplicacaoMB {
 	
 	public CategoriaCNH[] getCategoriasCNH() {
 		return categoriasCNH;
+	}
+	
+	public EstadoCivil[] getEstadosCivis() {
+		return estadosCivis;
 	}
 	
 	

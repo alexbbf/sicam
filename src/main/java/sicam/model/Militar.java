@@ -42,10 +42,12 @@ public class Militar {
 	private String nomePai;
 
 	private String nomeMae;
-	
+
 	@Enumerated(EnumType.STRING)
 	private EstadoCivil estadoCivil;
 
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Conjuge conjuge;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Endereco endereco;
@@ -170,7 +172,7 @@ public class Militar {
 	}
 
 	public Endereco getEndereco() {
-		if(endereco == null){
+		if (endereco == null) {
 			endereco = new Endereco();
 		}
 		return endereco;
@@ -261,7 +263,7 @@ public class Militar {
 	}
 
 	public TituloEleitor getTituloEleitor() {
-		if(tituloEleitor == null){
+		if (tituloEleitor == null) {
 			tituloEleitor = new TituloEleitor();
 		}
 		return tituloEleitor;
@@ -272,7 +274,7 @@ public class Militar {
 	}
 
 	public CarteiraHabilitacao getCnh() {
-		if (cnh == null){
+		if (cnh == null) {
 			cnh = new CarteiraHabilitacao();
 		}
 		return cnh;
@@ -283,7 +285,7 @@ public class Militar {
 	}
 
 	public RegistroGeral getRg() {
-		if(rg == null){
+		if (rg == null) {
 			rg = new RegistroGeral();
 		}
 		return rg;
@@ -339,6 +341,14 @@ public class Militar {
 
 	public void setSiape(String siape) {
 		this.siape = siape;
+	}
+
+	public Conjuge getConjuge() {
+		return conjuge;
+	}
+
+	public void setConjuge(Conjuge conjuge) {
+		this.conjuge = conjuge;
 	}
 
 	@Override

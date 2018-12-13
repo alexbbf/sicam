@@ -14,13 +14,15 @@
 	</ui:define>
 
 	<ui:define name="body">
-		<h:form>
-			<p:growl showDetail="true" life="3000">
+
+		<p:growl showDetail="true" life="3000">
+			<p:autoUpdate />
+		</p:growl>
+		<div class="ui-fluid">
+			<p:tabView activeIndex="#{tabViewMB.activetab}" id="tabview">
 				<p:autoUpdate />
-			</p:growl>
-			<div class="ui-fluid">
-				<p:tabView>
-					<p:tab title="Dados Basicos">
+				<p:tab title="Dados Basicos">
+					<h:form>
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 							layout="grid" styleClass="ui-fluid card">
@@ -101,10 +103,15 @@
 
 
 						</p:panelGrid>
-					</p:tab>
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(1)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" />
+					</h:form>
+				</p:tab>
 
-					<p:tab title="Documentos">
-
+				<p:tab title="Documentos">
+					<h:form>
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 							layout="grid" styleClass="ui-fluid card">
@@ -196,8 +203,14 @@
 								<f:convertDateTime pattern="dd/MM/yyyy" />
 							</p:calendar>
 						</p:panelGrid>
-					</p:tab>
-					<p:tab title="Documentos">
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(2)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" />
+					</h:form>
+				</p:tab>
+				<p:tab title="Endereço">
+					<h:form>
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 							layout="grid" styleClass="ui-fluid card">
@@ -236,21 +249,107 @@
 								requiredMessage="Campo Referência é obrigatório" />
 
 							<p:outputLabel value="Município" for="municipio" />
-							<p:autoComplete id="municipio" required="true" forceSelection="true"
+							<p:autoComplete id="municipio" required="true"
+								forceSelection="true"
 								requiredMessage="Campo Município é Obrigatório!"
 								placeholder="Ex: Boa Vista" converter="entityConverter"
 								value="#{militarMB.militar.endereco.municipio}"
-								completeMethod="#{autoCompleteMB.autoCompleteMunicipioRR}" var="l"
-								itemLabel="#{l.descricao}" itemValue="#{l}" />
+								completeMethod="#{autoCompleteMB.autoCompleteMunicipioRR}"
+								var="l" itemLabel="#{l.descricao}" itemValue="#{l}" />
 
 						</p:panelGrid>
-					</p:tab>
-				</p:tabView>
-				<p:commandButton id="salvarMilitar" value="SALVAR"
-					actionListener="#{militarMB.salvar}" styleClass="btn-primary"
-					icon="fa fa-save" validateClient="true" />
-			</div>
-		</h:form>
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(3)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" />
+					</h:form>
+				</p:tab>
+				<p:tab title="Estado Civil" >
+					<h:form>
+						<p:panelGrid columns="4"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-fluid card">
+
+							<p:outputLabel value="Estado Civil" for="estadocivil" />
+							<p:selectOneMenu id="estadocivil"
+								value="#{militarMB.militar.estadoCivil}" required="true"
+								requiredMessage="Campo Estado Civil é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{aplicacaoMB.estadosCivis}" var="_e"
+									itemLabel="#{_e.label}" itemValue="#{_e}" />
+								<p:ajax process="@this"
+									listener="#{estadoCivilMB.definirEstadoCivilSelecionado(militarMB.militar.estadoCivil)}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Nome do cônjuge" for="nomeconjuge" />
+							<p:inputText id="nomeconjuge" disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.nome}" required="true"
+								requiredMessage="Campo obrigatório">
+								<p:autoUpdate />
+							</p:inputText>
+
+							<p:outputLabel value="RG do cônjuge" for="rgconjuge" />
+							<p:inputText id="rgconjuge" disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.rg}" required="false"
+								requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="CPF do cônjuge" for="cpfconjuge" />
+							<p:inputMask id="cpfconjuge" mask="999.999.999-99"
+								disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.cpf}" required="false"
+								requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="PIS/PASEP do cônjuge" for="pisconjuge" />
+							<p:inputMask id="pisconjuge" mask="999.99999.99-9"
+								disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.pisPasep}" required="false"
+								requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="Data da união" for="datauniao" />
+							<p:calendar id="datauniao" disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.dataUniao}" locale="pt"
+								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
+								yearRange="c-30:c">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:calendar>
+
+							<p:outputLabel value="Número da certidão" for="numerocertidao" />
+							<p:inputText id="numerocertidao"
+								disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.numeroCertidao}"
+								required="false" requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="Número do livro" for="numerolivro" />
+							<p:inputText id="numerolivro" disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.numeroLivro}"
+								required="false" requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="Número da folha" for="numerofolha" />
+							<p:inputText id="numerofolha" disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.numeroFolha}"
+								required="false" requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="Nome do cartório" for="nomecartorio" />
+							<p:inputText id="nomecartorio"
+								disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.nomeCartorio}"
+								required="false" requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="Comarca" for="comarca" />
+							<p:inputText id="comarca" disabled="#{!estadoCivilMB.casado}"
+								value="#{militarMB.militar.conjuge.comarca}" required="false"
+								requiredMessage="Campo obrigatório" />
+
+						</p:panelGrid>
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(3)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" />
+					</h:form>
+				</p:tab>
+			</p:tabView>
+
+		</div>
 	</ui:define>
 
 </ui:composition>
