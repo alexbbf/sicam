@@ -344,6 +344,9 @@ public class Militar {
 	}
 
 	public Conjuge getConjuge() {
+		if(conjuge == null){
+			conjuge = new Conjuge();
+		}
 		return conjuge;
 	}
 

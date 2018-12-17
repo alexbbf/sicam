@@ -264,7 +264,7 @@
 							icon="fa fa-save" validateClient="true" />
 					</h:form>
 				</p:tab>
-				<p:tab title="Estado Civil" >
+				<p:tab title="Estado Civil">
 					<h:form>
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
@@ -279,6 +279,7 @@
 									itemLabel="#{_e.label}" itemValue="#{_e}" />
 								<p:ajax process="@this"
 									listener="#{estadoCivilMB.definirEstadoCivilSelecionado(militarMB.militar.estadoCivil)}" />
+								<p:ajax listener="#{tabViewMB.nextTab(3)}" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Nome do cônjuge" for="nomeconjuge" />
@@ -339,6 +340,40 @@
 							<p:inputText id="comarca" disabled="#{!estadoCivilMB.casado}"
 								value="#{militarMB.militar.conjuge.comarca}" required="false"
 								requiredMessage="Campo obrigatório" />
+
+						</p:panelGrid>
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(3)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" />
+					</h:form>
+				</p:tab>
+				<p:tab title="Dados Bancários">
+					<h:form>
+						<p:panelGrid columns="4"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-fluid card">
+
+							<p:outputLabel value="Banco" for="banco" />
+							<p:selectOneMenu id="banco" value="#{militarMB.militar.banco}"
+								required="false" requiredMessage="Campo Banco é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+
+							</p:selectOneMenu>
+
+
+							<p:outputLabel value="Agência" for="agencia" />
+							<p:inputText id="agencia"
+								value="#{militarMB.militar.dadosBancarios.agencia}"
+								required="false" requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="Conta" for="conta" />
+							<p:inputText id="conta"
+								value="#{militarMB.militar.dadosBancarios.conta}"
+								required="false" requiredMessage="Campo obrigatório" />
+
+
+
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
