@@ -344,7 +344,7 @@
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
-							actionListener="#{tabViewMB.nextTab(3)}" styleClass="btn-primary"
+							actionListener="#{tabViewMB.nextTab(4)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" />
 					</h:form>
 				</p:tab>
@@ -355,12 +355,14 @@
 							layout="grid" styleClass="ui-fluid card">
 
 							<p:outputLabel value="Banco" for="banco" />
-							<p:selectOneMenu id="banco" value="#{militarMB.militar.banco}"
-								required="false" requiredMessage="Campo Banco é obrigatório">
+							<p:selectOneMenu id="banco"
+								value="#{militarMB.militar.dadosBancarios.banco}"
+								required="false" requiredMessage="Campo Banco é obrigatório"
+								converter="entityConverter">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
-
+								<f:selectItems value="#{bancoMB.bancos}" var="_b"
+									itemLabel="#{_b.codigo} - #{_b.descricao}" itemValue="#{_b}" />
 							</p:selectOneMenu>
-
 
 							<p:outputLabel value="Agência" for="agencia" />
 							<p:inputText id="agencia"
@@ -372,13 +374,51 @@
 								value="#{militarMB.militar.dadosBancarios.conta}"
 								required="false" requiredMessage="Campo obrigatório" />
 
+						</p:panelGrid>
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" />
+					</h:form>
+				</p:tab>
 
+				<p:tab title="Dados Militares">
+					<h:form>
+						<p:panelGrid columns="4"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-fluid card">
+
+							<p:outputLabel value="Nome de guerra" for="nomedeguerra" />
+							<p:inputText id="nomedeguerra"
+								value="#{militarMB.militar.nomeGuerra}" required="true"
+								requiredMessage="Campo Nome de Guerra é obrigatório" />
+
+							<p:outputLabel value="Vínculo" for="vinculo" />
+							<p:selectOneMenu id="vinculo"
+								value="#{militarMB.militar.vinculo}" required="true"
+								requiredMessage="Campo Vínculo obrigatório">
+								<f:selectItems value="#{aplicacaoMB.vinculos}" var="_c"
+									itemLabel="#{_c.label}" itemValue="#{_c}" />
+								<p:ajax update="siape" />
+								<p:ajax listener="#{tabViewMB.nextTab(5)}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Matrícula" for="matricula" />
+							<p:inputText id="matricula"
+								value="#{militarMB.militar.matricula}" required="true"
+								requiredMessage="Campo obrigatório" />
+
+							<p:outputLabel value="Siape" for="siape" />
+							<p:inputText
+								disabled="#{militarMB.militar.vinculo ne aplicacaoMB.federal}"
+								id="siape" value="#{militarMB.militar.siape}" required="true"
+								requiredMessage="Campo obrigatório" />
 
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
-							actionListener="#{tabViewMB.nextTab(3)}" styleClass="btn-primary"
+							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" />
 					</h:form>
 				</p:tab>
@@ -386,5 +426,4 @@
 
 		</div>
 	</ui:define>
-
 </ui:composition>

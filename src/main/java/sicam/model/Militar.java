@@ -79,7 +79,7 @@ public class Militar {
 
 	private String cpf;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private DadosBancarios dadosBancarios;
 
 	private String nomeGuerra;
@@ -90,7 +90,34 @@ public class Militar {
 	private String matricula;
 
 	private String siape;
+	
+	@Temporal(TemporalType.DATE)
+	private Date dataIncorporacao;
+	
+	@ManyToOne
+	private Quadro quadro;
+	
+	@ManyToOne
+	private PostoGraduacao postoGraduacao;
 
+	@Temporal(TemporalType.DATE)
+	private Date dataPromocao;
+	
+	@Enumerated(EnumType.STRING)
+	private SituacaoMilitar situacaoMilitar;
+	
+	@Enumerated(EnumType.STRING)
+	private SituacaoMilitarAtiva situacaoMilitarAtiva;
+	
+	@ManyToOne
+	private Setor setor;
+	
+	@ManyToOne
+	private Setor adisposicao;
+	
+	@ManyToOne
+	private LocalAgregacao localAgregacao;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -304,6 +331,9 @@ public class Militar {
 	}
 
 	public DadosBancarios getDadosBancarios() {
+		if(dadosBancarios == null){
+			dadosBancarios = new DadosBancarios();
+		}
 		return dadosBancarios;
 	}
 
