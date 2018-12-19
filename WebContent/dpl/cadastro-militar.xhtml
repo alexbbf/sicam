@@ -414,6 +414,70 @@
 								id="siape" value="#{militarMB.militar.siape}" required="true"
 								requiredMessage="Campo obrigatório" />
 
+							<p:outputLabel value="Data de Incorporação"
+								for="dataincorporacao" />
+							<p:inputMask id="dataincorporacao"
+								value="#{militarMB.militar.dataIncorporacao}" mask="99/99/9999"
+								required="true"
+								requiredMessage="Campo Data de Incorporação é obrigatório">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputMask>
+
+							<p:outputLabel value="Quadro" for="quadro" />
+							<p:selectOneMenu id="quadro" converter="entityConverter"
+								value="#{militarMB.militar.quadro}" required="true"
+								requiredMessage="Campo Quadro é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{quadroMB.quadros}" var="_q"
+									itemLabel="#{_q.descricao}" itemValue="#{_q}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Posto/Graduação" for="postograduacao" />
+							<p:selectOneMenu id="postograduacao" converter="entityConverter"
+								value="#{militarMB.militar.postoGraduacao}" required="true"
+								requiredMessage="Campo Posto/Graduação é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{postoGraduacaoMB.postosGraduacoes}"
+									var="_p" itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Data de promoção" for="datapromocao" />
+							<p:inputMask id="datapromocao"
+								value="#{militarMB.militar.dataPromocao}" mask="99/99/9999"
+								required="true"
+								requiredMessage="Campo Data de Promoção é obrigatório">
+								<f:convertDateTime pattern="dd/MM/yyyy" />
+							</p:inputMask>
+
+							<p:outputLabel value="Situação Militar" for="situacaomilitar" />
+							<p:selectOneMenu id="situacaomilitar"
+								value="#{militarMB.militar.situacaoMilitar}" required="true"
+								requiredMessage="Campo Situação Militar é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{aplicacaoMB.situacoesMilitar}" var="_c"
+									itemLabel="#{_c.label}" itemValue="#{_c}" />
+								<!-- 								<p:ajax update="situacaoativa lotacao adisposicao" /> -->
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Situaçao" for="situacaoativa" />
+							<p:selectOneMenu id="situacaoativa"
+								disabled="#{militarMB.militar.situacaoMilitar ne aplicacaoMB.ativa}"
+								value="#{militarMB.militar.situacaoMilitarAtiva}"
+								required="true" requiredMessage="Campo Situação obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{aplicacaoMB.situacoesMilitarAtiva}"
+									var="_c" itemLabel="#{_c.label}" itemValue="#{_c}" />
+								<!-- 								<p:ajax update="localagregacao lotacao adisposicao" /> -->
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Local de Agregação" for="localagregacao" />
+							<p:autoComplete id="localagregacao" required="true"
+								forceSelection="true"
+								requiredMessage="Campo Município é Obrigatório!"
+								placeholder="APICS" converter="entityConverter"
+								value="#{militarMB.militar.localAgregacao}"
+								completeMethod="#{autoCompleteMB.autoCompleteMunicipioRR}"
+								var="l" itemLabel="#{l.descricao}" itemValue="#{l}" />
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"

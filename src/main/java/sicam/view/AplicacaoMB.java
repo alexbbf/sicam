@@ -8,6 +8,8 @@ import sicam.model.EstadoCivil;
 import sicam.model.FatorRh;
 import sicam.model.Raca;
 import sicam.model.Sexo;
+import sicam.model.SituacaoMilitar;
+import sicam.model.SituacaoMilitarAtiva;
 import sicam.model.TipoSanguineo;
 import sicam.model.Vinculo;
 
@@ -16,6 +18,7 @@ import sicam.model.Vinculo;
 public class AplicacaoMB {
 	
 	private Vinculo federal = Vinculo.FEDERAL;
+	private SituacaoMilitar ativa = SituacaoMilitar.ATIVA;
 	
 	private Sexo[] sexos = Sexo.values();
 	private Raca[] racas = Raca.values();
@@ -24,6 +27,8 @@ public class AplicacaoMB {
 	private CategoriaCNH[] categoriasCNH = CategoriaCNH.values();
 	private EstadoCivil[] estadosCivis = EstadoCivil.values();
 	private Vinculo[] vinculos = Vinculo.values();
+	private SituacaoMilitar[] situacoesMilitar = SituacaoMilitar.values();
+	private SituacaoMilitarAtiva[] situacoesMilitarAtiva = SituacaoMilitarAtiva.values();
 
 	public Sexo[] getSexos() {
 		return sexos;
@@ -57,5 +62,16 @@ public class AplicacaoMB {
 		return federal;
 	}
 	
+	public SituacaoMilitar[] getSituacoesMilitar() {
+		return situacoesMilitar;
+	}
+	
+	public SituacaoMilitarAtiva[] getSituacoesMilitarAtiva() {
+		return situacoesMilitarAtiva;
+	}
+	
+	public SituacaoMilitar getAtiva() {
+		return ativa;
+	}
 
 }

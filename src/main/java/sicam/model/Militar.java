@@ -90,34 +90,34 @@ public class Militar {
 	private String matricula;
 
 	private String siape;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date dataIncorporacao;
-	
+
 	@ManyToOne
 	private Quadro quadro;
-	
+
 	@ManyToOne
 	private PostoGraduacao postoGraduacao;
 
 	@Temporal(TemporalType.DATE)
 	private Date dataPromocao;
-	
+
 	@Enumerated(EnumType.STRING)
 	private SituacaoMilitar situacaoMilitar;
-	
+
 	@Enumerated(EnumType.STRING)
 	private SituacaoMilitarAtiva situacaoMilitarAtiva;
-	
+
 	@ManyToOne
 	private Setor setor;
-	
+
 	@ManyToOne
 	private Setor adisposicao;
-	
+
 	@ManyToOne
 	private LocalAgregacao localAgregacao;
-	
+
 	public Integer getId() {
 		return id;
 	}
@@ -331,7 +331,7 @@ public class Militar {
 	}
 
 	public DadosBancarios getDadosBancarios() {
-		if(dadosBancarios == null){
+		if (dadosBancarios == null) {
 			dadosBancarios = new DadosBancarios();
 		}
 		return dadosBancarios;
@@ -374,7 +374,7 @@ public class Militar {
 	}
 
 	public Conjuge getConjuge() {
-		if(conjuge == null){
+		if (conjuge == null) {
 			conjuge = new Conjuge();
 		}
 		return conjuge;
@@ -382,6 +382,79 @@ public class Militar {
 
 	public void setConjuge(Conjuge conjuge) {
 		this.conjuge = conjuge;
+	}
+
+	public Date getDataIncorporacao() {
+		return dataIncorporacao;
+	}
+
+	public void setDataIncorporacao(Date dataIncorporacao) {
+		this.dataIncorporacao = dataIncorporacao;
+	}
+
+	public Quadro getQuadro() {
+		return quadro;
+	}
+
+	public void setQuadro(Quadro quadro) {
+		this.quadro = quadro;
+	}
+
+	public PostoGraduacao getPostoGraduacao() {
+		return postoGraduacao;
+	}
+
+	public void setPostoGraduacao(PostoGraduacao postoGraduacao) {
+		this.postoGraduacao = postoGraduacao;
+	}
+
+	public Date getDataPromocao() {
+		return dataPromocao;
+	}
+
+	public void setDataPromocao(Date dataPromocao) {
+		this.dataPromocao = dataPromocao;
+	}
+
+	public SituacaoMilitar getSituacaoMilitar() {
+		return situacaoMilitar;
+	}
+
+	public void setSituacaoMilitar(SituacaoMilitar situacaoMilitar) {
+		this.situacaoMilitar = situacaoMilitar;
+	}
+
+	public SituacaoMilitarAtiva getSituacaoMilitarAtiva() {
+		return situacaoMilitarAtiva;
+	}
+
+	public void setSituacaoMilitarAtiva(
+			SituacaoMilitarAtiva situacaoMilitarAtiva) {
+		this.situacaoMilitarAtiva = situacaoMilitarAtiva;
+	}
+
+	public Setor getSetor() {
+		return setor;
+	}
+
+	public void setSetor(Setor setor) {
+		this.setor = setor;
+	}
+
+	public Setor getAdisposicao() {
+		return adisposicao;
+	}
+
+	public void setAdisposicao(Setor adisposicao) {
+		this.adisposicao = adisposicao;
+	}
+
+	public LocalAgregacao getLocalAgregacao() {
+		return localAgregacao;
+	}
+
+	public void setLocalAgregacao(LocalAgregacao localAgregacao) {
+		this.localAgregacao = localAgregacao;
 	}
 
 	@Override
