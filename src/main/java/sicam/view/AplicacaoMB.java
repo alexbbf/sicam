@@ -19,6 +19,7 @@ public class AplicacaoMB {
 	
 	private Vinculo federal = Vinculo.FEDERAL;
 	private SituacaoMilitar ativa = SituacaoMilitar.ATIVA;
+	private SituacaoMilitarAtiva agregado = SituacaoMilitarAtiva.AGREGADO;
 	
 	private Sexo[] sexos = Sexo.values();
 	private Raca[] racas = Raca.values();
@@ -72,6 +73,10 @@ public class AplicacaoMB {
 	
 	public SituacaoMilitar getAtiva() {
 		return ativa;
+	}
+	
+	public SituacaoMilitarAtiva getAgregado() {
+		return agregado;
 	}
 
 }

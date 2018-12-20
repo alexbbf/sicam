@@ -20,7 +20,6 @@
 		</p:growl>
 		<div class="ui-fluid">
 			<p:tabView activeIndex="#{tabViewMB.activetab}" id="tabview">
-				<p:autoUpdate />
 				<p:tab title="Dados Basicos">
 					<h:form>
 						<p:panelGrid columns="4"
@@ -106,7 +105,7 @@
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
 							actionListener="#{tabViewMB.nextTab(1)}" styleClass="btn-primary"
-							icon="fa fa-save" validateClient="true" />
+							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
 				</p:tab>
 
@@ -206,7 +205,7 @@
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
 							actionListener="#{tabViewMB.nextTab(2)}" styleClass="btn-primary"
-							icon="fa fa-save" validateClient="true" />
+							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
 				</p:tab>
 				<p:tab title="Endereço">
@@ -261,7 +260,7 @@
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
 							actionListener="#{tabViewMB.nextTab(3)}" styleClass="btn-primary"
-							icon="fa fa-save" validateClient="true" />
+							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
 				</p:tab>
 				<p:tab title="Estado Civil">
@@ -269,7 +268,7 @@
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 							layout="grid" styleClass="ui-fluid card">
-
+							<p:autoUpdate />
 							<p:outputLabel value="Estado Civil" for="estadocivil" />
 							<p:selectOneMenu id="estadocivil"
 								value="#{militarMB.militar.estadoCivil}" required="true"
@@ -279,14 +278,12 @@
 									itemLabel="#{_e.label}" itemValue="#{_e}" />
 								<p:ajax process="@this"
 									listener="#{estadoCivilMB.definirEstadoCivilSelecionado(militarMB.militar.estadoCivil)}" />
-								<p:ajax listener="#{tabViewMB.nextTab(3)}" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Nome do cônjuge" for="nomeconjuge" />
 							<p:inputText id="nomeconjuge" disabled="#{!estadoCivilMB.casado}"
 								value="#{militarMB.militar.conjuge.nome}" required="true"
 								requiredMessage="Campo obrigatório">
-								<p:autoUpdate />
 							</p:inputText>
 
 							<p:outputLabel value="RG do cônjuge" for="rgconjuge" />
@@ -345,7 +342,7 @@
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
 							actionListener="#{tabViewMB.nextTab(4)}" styleClass="btn-primary"
-							icon="fa fa-save" validateClient="true" />
+							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
 				</p:tab>
 				<p:tab title="Dados Bancários">
@@ -378,7 +375,7 @@
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
 							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
-							icon="fa fa-save" validateClient="true" />
+							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
 				</p:tab>
 
@@ -400,7 +397,6 @@
 								<f:selectItems value="#{aplicacaoMB.vinculos}" var="_c"
 									itemLabel="#{_c.label}" itemValue="#{_c}" />
 								<p:ajax update="siape" />
-								<p:ajax listener="#{tabViewMB.nextTab(5)}" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Matrícula" for="matricula" />
@@ -456,7 +452,7 @@
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{aplicacaoMB.situacoesMilitar}" var="_c"
 									itemLabel="#{_c.label}" itemValue="#{_c}" />
-								<!-- 								<p:ajax update="situacaoativa lotacao adisposicao" /> -->
+								<p:ajax update="situacaoativa localagregacao" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Situaçao" for="situacaoativa" />
@@ -467,23 +463,24 @@
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{aplicacaoMB.situacoesMilitarAtiva}"
 									var="_c" itemLabel="#{_c.label}" itemValue="#{_c}" />
-								<!-- 								<p:ajax update="localagregacao lotacao adisposicao" /> -->
+								<p:ajax update="localagregacao" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Local de Agregação" for="localagregacao" />
 							<p:autoComplete id="localagregacao" required="true"
 								forceSelection="true"
-								requiredMessage="Campo Município é Obrigatório!"
-								placeholder="APICS" converter="entityConverter"
+								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.agregado}"
+								requiredMessage="Campo Local de Agregação é Obrigatório!"
+								placeholder="Ex: APICS" converter="entityConverter"
 								value="#{militarMB.militar.localAgregacao}"
-								completeMethod="#{autoCompleteMB.autoCompleteMunicipioRR}"
+								completeMethod="#{localAgregacaoMB.autoCompleteLocalAgregacao}"
 								var="l" itemLabel="#{l.descricao}" itemValue="#{l}" />
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
 							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
-							icon="fa fa-save" validateClient="true" />
+							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
 				</p:tab>
 			</p:tabView>
