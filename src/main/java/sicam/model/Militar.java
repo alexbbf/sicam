@@ -1,6 +1,7 @@
 package sicam.model;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -117,7 +119,10 @@ public class Militar {
 
 	@ManyToOne
 	private LocalAgregacao localAgregacao;
-
+	
+	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL)
+	private List<MilitarCursoNotas> cursos;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -455,6 +460,14 @@ public class Militar {
 
 	public void setLocalAgregacao(LocalAgregacao localAgregacao) {
 		this.localAgregacao = localAgregacao;
+	}
+
+	public List<MilitarCursoNotas> getCursos() {
+		return cursos;
+	}
+
+	public void setCursos(List<MilitarCursoNotas> cursos) {
+		this.cursos = cursos;
 	}
 
 	@Override
