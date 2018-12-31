@@ -479,6 +479,65 @@
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(6)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" update="tabview" />
+					</h:form>
+				</p:tab>
+
+				<p:tab title="Escolaridade">
+					<h:form>
+						<p:panelGrid columns="4"
+							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+							layout="grid" styleClass="ui-fluid card">
+
+							<p:outputLabel value="Escolaridade" for="escolaridade" />
+							<p:selectOneMenu id="escolaridade" converter="entityConverter"
+								value="#{militarMB.militar.escolaridade}" required="true"
+								requiredMessage="Campo Escolaridade é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{escolaridadeMB.escolaridades}" var="_p"
+									itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+							</p:selectOneMenu>
+
+						</p:panelGrid>
+						<hr/>
+<!-- 						<p:dataTable id="tablecurso" var="curso" -->
+<!-- 							value="#{militarMB.militar.cursos}" -->
+<!-- 							emptyMessage="Nenhum curso infomado"> -->
+<!-- 							<p:column headerText="Sigla"> -->
+<!-- 								<h:outputText value="#{curso.curso.sigla}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Área"> -->
+<!-- 								<h:outputText value="#{curso.areaCurso.label}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Tipo"> -->
+<!-- 								<h:outputText value="#{curso.tipoCurso.label}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Instituição"> -->
+<!-- 								<h:outputText value="#{curso.curso.instituicao}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Início"> -->
+<!-- 								<h:outputText value="#{curso.curso.dataInicio}"> -->
+<!-- 									<f:convertDateTime pattern="dd/MM/yyyy" /> -->
+<!-- 								</h:outputText> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Término"> -->
+<!-- 								<h:outputText value="#{curso.curso.dataFim}"> -->
+<!-- 									<f:convertDateTime pattern="dd/MM/yyyy" /> -->
+<!-- 								</h:outputText> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="C.H."> -->
+<!-- 								<h:outputText value="#{curso.curso.cargaHoraria}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Situação"> -->
+<!-- 								<h:outputText value="#{curso.situacao.label}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Remover"> -->
+<!-- 							</p:column> -->
+<!-- 						</p:dataTable> -->
+
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
 							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>

@@ -15,7 +15,7 @@ public class PostoGraduacaoDao {
 	}
 
 	public List<PostoGraduacao> listar() {
-		return em.createQuery("SELECT p FROM PostoGraduacao p",
+		return em.createQuery("SELECT p FROM PostoGraduacao p order by p.id asc",
 				PostoGraduacao.class).getResultList();
 	}
 

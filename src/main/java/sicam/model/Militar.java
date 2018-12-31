@@ -119,10 +119,13 @@ public class Militar {
 
 	@ManyToOne
 	private LocalAgregacao localAgregacao;
-	
+
 	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL)
 	private List<MilitarCursoNotas> cursos;
-	
+
+	@ManyToOne
+	private Escolaridade escolaridade;
+
 	public Integer getId() {
 		return id;
 	}
@@ -468,6 +471,14 @@ public class Militar {
 
 	public void setCursos(List<MilitarCursoNotas> cursos) {
 		this.cursos = cursos;
+	}
+
+	public Escolaridade getEscolaridade() {
+		return escolaridade;
+	}
+
+	public void setEscolaridade(Escolaridade escolaridade) {
+		this.escolaridade = escolaridade;
 	}
 
 	@Override
