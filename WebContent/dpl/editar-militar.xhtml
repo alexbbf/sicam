@@ -475,15 +475,8 @@
 								value="#{militarMB.militar.localAgregacao}"
 								completeMethod="#{localAgregacaoMB.autoCompleteLocalAgregacao}"
 								var="l" itemLabel="#{l.descricao}" itemValue="#{l}" />
-
-							<p:outputLabel value="Lotação" for="lotacao" />
-							<p:selectOneMenu id="lotacao" converter="entityConverter"
-								value="#{militarMB.militar.quadro}" required="true"
-								requiredMessage="Campo Lotação é obrigatório">
-								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
-								<f:selectItems value="#{setorMB.setores}" var="_s"
-									itemLabel="#{_s.sigla}" itemValue="#{_s}" />
-							</p:selectOneMenu>
+								
+							
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
@@ -509,41 +502,41 @@
 							</p:selectOneMenu>
 
 						</p:panelGrid>
-						<hr />
-						<!-- 						<p:dataTable id="tablecurso" var="curso" -->
-						<!-- 							value="#{militarMB.militar.cursos}" -->
-						<!-- 							emptyMessage="Nenhum curso infomado"> -->
-						<!-- 							<p:column headerText="Sigla"> -->
-						<!-- 								<h:outputText value="#{curso.curso.sigla}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Área"> -->
-						<!-- 								<h:outputText value="#{curso.areaCurso.label}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Tipo"> -->
-						<!-- 								<h:outputText value="#{curso.tipoCurso.label}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Instituição"> -->
-						<!-- 								<h:outputText value="#{curso.curso.instituicao}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Início"> -->
-						<!-- 								<h:outputText value="#{curso.curso.dataInicio}"> -->
-						<!-- 									<f:convertDateTime pattern="dd/MM/yyyy" /> -->
-						<!-- 								</h:outputText> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Término"> -->
-						<!-- 								<h:outputText value="#{curso.curso.dataFim}"> -->
-						<!-- 									<f:convertDateTime pattern="dd/MM/yyyy" /> -->
-						<!-- 								</h:outputText> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="C.H."> -->
-						<!-- 								<h:outputText value="#{curso.curso.cargaHoraria}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Situação"> -->
-						<!-- 								<h:outputText value="#{curso.situacao.label}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Remover"> -->
-						<!-- 							</p:column> -->
-						<!-- 						</p:dataTable> -->
+						<hr/>
+<!-- 						<p:dataTable id="tablecurso" var="curso" -->
+<!-- 							value="#{militarMB.militar.cursos}" -->
+<!-- 							emptyMessage="Nenhum curso infomado"> -->
+<!-- 							<p:column headerText="Sigla"> -->
+<!-- 								<h:outputText value="#{curso.curso.sigla}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Área"> -->
+<!-- 								<h:outputText value="#{curso.areaCurso.label}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Tipo"> -->
+<!-- 								<h:outputText value="#{curso.tipoCurso.label}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Instituição"> -->
+<!-- 								<h:outputText value="#{curso.curso.instituicao}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Início"> -->
+<!-- 								<h:outputText value="#{curso.curso.dataInicio}"> -->
+<!-- 									<f:convertDateTime pattern="dd/MM/yyyy" /> -->
+<!-- 								</h:outputText> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Término"> -->
+<!-- 								<h:outputText value="#{curso.curso.dataFim}"> -->
+<!-- 									<f:convertDateTime pattern="dd/MM/yyyy" /> -->
+<!-- 								</h:outputText> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="C.H."> -->
+<!-- 								<h:outputText value="#{curso.curso.cargaHoraria}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Situação"> -->
+<!-- 								<h:outputText value="#{curso.situacao.label}" /> -->
+<!-- 							</p:column> -->
+<!-- 							<p:column headerText="Remover"> -->
+<!-- 							</p:column> -->
+<!-- 						</p:dataTable> -->
 
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
