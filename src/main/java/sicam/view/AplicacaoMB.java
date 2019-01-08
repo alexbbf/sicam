@@ -4,6 +4,7 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 
 import sicam.model.CategoriaCNH;
+import sicam.model.ChavePesquisaMilitar;
 import sicam.model.EstadoCivil;
 import sicam.model.FatorRh;
 import sicam.model.Raca;
@@ -20,6 +21,7 @@ public class AplicacaoMB {
 	private Vinculo federal = Vinculo.FEDERAL;
 	private SituacaoMilitar ativa = SituacaoMilitar.ATIVA;
 	private SituacaoMilitarAtiva agregado = SituacaoMilitarAtiva.AGREGADO;
+	private SituacaoMilitarAtiva atividade = SituacaoMilitarAtiva.ATIVIDADE;
 	
 	private Sexo[] sexos = Sexo.values();
 	private Raca[] racas = Raca.values();
@@ -30,6 +32,7 @@ public class AplicacaoMB {
 	private Vinculo[] vinculos = Vinculo.values();
 	private SituacaoMilitar[] situacoesMilitar = SituacaoMilitar.values();
 	private SituacaoMilitarAtiva[] situacoesMilitarAtiva = SituacaoMilitarAtiva.values();
+	private ChavePesquisaMilitar[] chavesPesquisa = ChavePesquisaMilitar.values();
 
 	public Sexo[] getSexos() {
 		return sexos;
@@ -77,6 +80,14 @@ public class AplicacaoMB {
 	
 	public SituacaoMilitarAtiva getAgregado() {
 		return agregado;
+	}
+	
+	public SituacaoMilitarAtiva getAtividade() {
+		return atividade;
+	}
+	
+	public ChavePesquisaMilitar[] getChavesPesquisa() {
+		return chavesPesquisa;
 	}
 
 }

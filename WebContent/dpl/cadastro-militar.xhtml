@@ -463,7 +463,7 @@
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{aplicacaoMB.situacoesMilitarAtiva}"
 									var="_c" itemLabel="#{_c.label}" itemValue="#{_c}" />
-								<p:ajax update="localagregacao" />
+								<p:ajax update="localagregacao lotacao" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Local de Agregação" for="localagregacao" />
@@ -478,7 +478,7 @@
 
 							<p:outputLabel value="Lotação" for="lotacao" />
 							<p:selectOneMenu id="lotacao" converter="entityConverter"
-								value="#{militarMB.militar.quadro}" required="true"
+								value="#{militarMB.militar.quadro}" required="true" disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
 								requiredMessage="Campo Lotação é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{setorMB.setores}" var="_s"
