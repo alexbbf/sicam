@@ -31,6 +31,14 @@ public class MilitarBusiness {
 		return dao.salvar(m);
 	}
 	
+	public Militar selecionar(Integer id) {
+		return dao.selecionar(id);
+	}
+	
+	public Militar selecionaPorCpf(String cpf) {
+		return dao.selecionaPorCpf(cpf);
+	}
+	
 	public List<MilitarDTO> pesquisar(String palavraPesquisa, ChavePesquisaMilitar chavePesquisa) {
 		
 		if (chavePesquisa.equals(ChavePesquisaMilitar.CPF)) {

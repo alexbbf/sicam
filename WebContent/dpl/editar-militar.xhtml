@@ -21,12 +21,12 @@
 
 		<div class="ui-fluid">
 			<h:form>
-				<p:panel header="Box colors" styleClass="card no-border"
-					toggleable="true" toggleSpeed="300">
+				<p:panel styleClass="card no-border" toggleable="true"
+					toggleSpeed="300">
 					<h:panelGrid columns="4"
-						columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+						columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-4	,ui-grid-col-1"
 						layout="grid" styleClass="ui-fluid card">
-						<p:outputLabel value="Chave de pesquisa:" for="chavepesquisa" />
+						<p:outputLabel value="Chave de pesquisa" for="chavepesquisa" />
 						<p:selectOneMenu id="chavepesquisa"
 							value="#{militarMB.chavePesquisa}" required="true"
 							requiredMessage="Campo obrigatório">
@@ -39,6 +39,7 @@
 							required="true" requiredMessage="Campo obrigatório" />
 
 						<p:commandButton icon="ui-icon-search"
+							styleClass="btn-block btn-default"
 							action="#{militarMB.pesquisar()}" update="tablemilitares" />
 
 					</h:panelGrid>
@@ -46,28 +47,27 @@
 
 					<div class="ui-g">
 						<div class="ui-g-6 ui-sm-12">
-							<p:dataTable id="tablemilitares" var="car"
-								value="#{datatableMB.cars}" paginator="true"
-								paginatorPosition="bottom" styleClass="box-primary"
-								paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								rowsPerPageTemplate="5,10,15" rows="10"
-								emptyMessage="No cars found with given criteria">
+							<p:dataTable id="tablemilitares" var="militar"
+								rowKey="#{militar.id}" selectionMode="single"
+								value="#{militarMB.militaresDTO}" styleClass="box-primary"
+								selection="#{militarMB.militarDTOSelecionado}"
+								emptyMessage="Nenhum encontrado">
+								<p:ajax event="rowSelect"
+									listener="#{militarMB.selecionarDTO()}" update=":tabview" />
 
-								<f:facet name="header">
-									<h:outputText value="Box primary table" />
-								</f:facet>
-
-								<f:facet name="footer">
-									<h:outputText value="Table footer" />
-								</f:facet>
-
-								<p:column styleClass="align-center" headerText="Id" priority="1">
-									<h:outputText value="#{car.id}" />
+								<p:column styleClass="align-center" headerText="Posto/Grad"
+									priority="3">
+									<h:outputText value="#{militar.postoGraduacao.descricao}" />
 								</p:column>
 
-								<p:column styleClass="align-center" headerText="Brand"
+								<p:column styleClass="align-center" headerText="Nome de Guerra"
 									priority="2">
-									<h:outputText value="#{car.brand}" />
+									<h:outputText value="#{militar.nomeGuerra}" />
+								</p:column>
+
+								<p:column styleClass="align-center" headerText="Nome"
+									priority="1">
+									<h:outputText value="#{militar.nomeCompleto}" />
 								</p:column>
 							</p:dataTable>
 						</div>

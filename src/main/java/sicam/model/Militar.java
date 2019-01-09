@@ -7,6 +7,7 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -120,11 +121,13 @@ public class Militar {
 	@ManyToOne
 	private LocalAgregacao localAgregacao;
 
-	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<MilitarCursoNotas> cursos;
 
 	@ManyToOne
 	private Escolaridade escolaridade;
+	
+	private String senha;
 
 	public Integer getId() {
 		return id;
@@ -479,6 +482,16 @@ public class Militar {
 
 	public void setEscolaridade(Escolaridade escolaridade) {
 		this.escolaridade = escolaridade;
+	}
+	
+	
+
+	public String getSenha() {
+		return senha;
+	}
+
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@Override

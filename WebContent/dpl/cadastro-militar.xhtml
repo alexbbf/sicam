@@ -478,7 +478,7 @@
 
 							<p:outputLabel value="Lotação" for="lotacao" />
 							<p:selectOneMenu id="lotacao" converter="entityConverter"
-								value="#{militarMB.militar.quadro}" required="true" disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
+								value="#{militarMB.militar.setor}" required="true" disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
 								requiredMessage="Campo Lotação é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{setorMB.setores}" var="_s"

@@ -23,12 +23,24 @@ public class MilitarMB {
 	
 	private List<MilitarDTO> militaresDTO = new ArrayList<MilitarDTO>();
 	
+	private MilitarDTO militarDTOSelecionado;
+	
 	private ChavePesquisaMilitar chavePesquisa;
 	
 	private String palavraPesquisa;
 	
 	public void salvar(){
 		militar = business.salvar(militar);
+	}
+	
+	public void selecionarDTO(){
+		try{
+			if (militarDTOSelecionado.getId() != null){
+				militar = business.selecionar(militarDTOSelecionado.getId());
+			} 
+		} catch (NullPointerException npe) {
+			
+		}
 	}
 	
 	public void pesquisar(){
@@ -66,6 +78,16 @@ public class MilitarMB {
 	public void setMilitaresDTO(List<MilitarDTO> militaresDTO) {
 		this.militaresDTO = militaresDTO;
 	}
+
+	public MilitarDTO getMilitarDTOSelecionado() {
+		return militarDTOSelecionado;
+	}
+
+	public void setMilitarDTOSelecionado(MilitarDTO militarDTOSelecionado) {
+		this.militarDTOSelecionado = militarDTOSelecionado;
+	}
+	
+	
 	
 	
 	
