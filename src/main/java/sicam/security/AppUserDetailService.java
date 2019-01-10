@@ -14,6 +14,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import sicam.business.MilitarBusiness;
 import sicam.model.Militar;
+import sicam.model.Permissao;
 
 public class AppUserDetailService implements UserDetailsService {
 	

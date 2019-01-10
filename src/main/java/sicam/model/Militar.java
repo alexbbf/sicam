@@ -124,9 +124,12 @@ public class Militar {
 	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<MilitarCursoNotas> cursos;
 
+	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Permissao> permissoes;
+
 	@ManyToOne
 	private Escolaridade escolaridade;
-	
+
 	private String senha;
 
 	public Integer getId() {
@@ -483,8 +486,14 @@ public class Militar {
 	public void setEscolaridade(Escolaridade escolaridade) {
 		this.escolaridade = escolaridade;
 	}
-	
-	
+
+	public List<Permissao> getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(List<Permissao> permissoes) {
+		this.permissoes = permissoes;
+	}
 
 	public String getSenha() {
 		return senha;

@@ -15,6 +15,8 @@ import com.github.adminfaces.template.session.AdminSession;
 public class Seguranca extends AdminSession {
 
 	private static final long serialVersionUID = -6467516579153162374L;
+	
+	private UsuarioSistema usuarioSistema = null;
 
 	public String getNomeUsuario() {
 		String nome = null;
@@ -32,22 +34,43 @@ public class Seguranca extends AdminSession {
 
 	private UsuarioSistema getUsuarioLogado() {
 		UsuarioSistema usuario = null;
+		try {
+			UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) FacesContext
+					.getCurrentInstance().getExternalContext()
+					.getUserPrincipal();
 
-		UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) FacesContext
-				.getCurrentInstance().getExternalContext().getUserPrincipal();
-
-		if (auth != null && auth.getPrincipal() != null) {
-			usuario = (UsuarioSistema) auth.getPrincipal();
+			if (auth != null && auth.getPrincipal() != null) {
+				usuario = (UsuarioSistema) auth.getPrincipal();
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+			return null;
 		}
-
+		usuarioSistema = usuario;
 		return usuario;
 	}
 
 	@Override
 	public boolean isLoggedIn() {
-
-		return true;
-//		return (getNomeUsuario() != null);
+		if (usuarioSistema == null) {
+			System.out.println("NAO LOGOU");
+			return false;
+		} else {
+			System.out.println("LOGOU");
+			return true;
+		}
 	}
+
+	public UsuarioSistema getUsuarioSistema() {
+		return usuarioSistema;
+	}
+
+	public void setUsuarioSistema(UsuarioSistema usuarioSistema) {
+		this.usuarioSistema = usuarioSistema;
+	}
+
+
+	
+	
 
 }
