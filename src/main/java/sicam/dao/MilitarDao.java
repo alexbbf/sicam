@@ -33,9 +33,13 @@ public class MilitarDao {
 	public Militar selecionaPorCpf(String cpf) {
 		String hql = "select m from Militar m where m.cpf = :cpf";
 		try {
-			return em.createQuery(hql, Militar.class).setParameter("cpf", cpf)
+			Militar militar;
+			militar = em.createQuery(hql, Militar.class).setParameter("cpf", cpf)
 					.getSingleResult();
+			
+			return militar;
 		} catch (NoResultException npe) {
+			npe.printStackTrace();
 			return null;
 		}
 	}

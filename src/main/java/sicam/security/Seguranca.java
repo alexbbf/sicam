@@ -17,7 +17,7 @@ public class Seguranca extends AdminSession {
 	private static final long serialVersionUID = -6467516579153162374L;
 	
 	private UsuarioSistema usuarioSistema = null;
-
+	
 	public String getNomeUsuario() {
 		String nome = null;
 
@@ -52,14 +52,9 @@ public class Seguranca extends AdminSession {
 
 	@Override
 	public boolean isLoggedIn() {
-		if (usuarioSistema == null) {
-			System.out.println("NAO LOGOU");
-			return false;
-		} else {
-			System.out.println("LOGOU");
-			return true;
-		}
+		return (getUsuarioLogado() != null);
 	}
+	
 
 	public UsuarioSistema getUsuarioSistema() {
 		return usuarioSistema;
