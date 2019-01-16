@@ -14,10 +14,8 @@ import com.github.adminfaces.template.session.AdminSession;
 @Specializes
 public class Seguranca extends AdminSession {
 
-	private static final long serialVersionUID = -6467516579153162374L;
-	
-	private UsuarioSistema usuarioSistema = null;
-	
+	private static final long serialVersionUID = -372972740597069215L;
+
 	public String getNomeUsuario() {
 		String nome = null;
 
@@ -46,26 +44,13 @@ public class Seguranca extends AdminSession {
 			npe.printStackTrace();
 			return null;
 		}
-		usuarioSistema = usuario;
 		return usuario;
 	}
 
 	@Override
 	public boolean isLoggedIn() {
-		return (getUsuarioLogado() != null);
+
+		return getNomeUsuario() != null;
 	}
-	
-
-	public UsuarioSistema getUsuarioSistema() {
-		return usuarioSistema;
-	}
-
-	public void setUsuarioSistema(UsuarioSistema usuarioSistema) {
-		this.usuarioSistema = usuarioSistema;
-	}
-
-
-	
-	
 
 }

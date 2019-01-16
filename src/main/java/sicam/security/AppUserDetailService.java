@@ -19,10 +19,10 @@ import sicam.model.Permissao;
 public class AppUserDetailService implements UserDetailsService {
 	
 	
-	
 	@EJB(mappedName = "java:global/sicam/MilitarBusiness")
 	private MilitarBusiness business;
-
+	
+	
 	@Override
 	public UserDetails loadUserByUsername(String cpf)
 			throws UsernameNotFoundException {
@@ -31,7 +31,6 @@ public class AppUserDetailService implements UserDetailsService {
 		
 		if (militar != null) {
 			user = new UsuarioSistema(militar, getGrupos(militar));
-			
 			
 		}
 		
@@ -47,5 +46,6 @@ public class AppUserDetailService implements UserDetailsService {
 			
 		return grupos;
 	}
+	
 
 }
