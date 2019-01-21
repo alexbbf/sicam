@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title>Admin Starter</title>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<meta name="theme-color" content="#444" />
+	<meta name="mobile-web-app-capable" content="yes" />
+
+	<style type="text/css">
+body .load-bar {
+	margin-top: -20px;
+}
+/* below css hides growls in small screens and makes messages visible */
+@media ( max-width : 768px) {
+	body div.ui-growl {
+		display: none;
+	}
+	body div.ui-messages {
+		display: block;
+	}
+}
+
+/* below css hides messages in medium/big devices and makes growl visible in such devices */
+@media ( min-width : 769px) {
+	body div.ui-growl {
+		display: block;
+	}
+	body div.ui-messages {
+		display: none;
+	}
+}
+
+body.login-page {
+	background-color: transparent;
+}
+
+html {
+	background: url(#{ resource [ 'images:login-bg.jpg' ]
+}
+)
+no-repeat
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+center
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+center
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+fixed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
+-webkit-background-size
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+cover
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
+-moz-background-size
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+cover
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
+-o-background-size
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+cover
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
+background-size
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+:
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+cover
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;
+}
+</style>
+</h:head>
+
+<h:body styleClass="hold-transition login-page">
+	<div id="loader" class="load-bar" style="display: none">
+		<div class="bar"></div>
+		<div class="bar"></div>
+		<div class="bar"></div>
+	</div>
+
+
+	<div class="login-box">
+		<div style="text-align: center;" class="login-logo">
+			<a href="index.xhtml"> <b>SiCAM</b>2.0
+			</a>
+		</div>
+		<div class="box login-box-body">
+			<form name='f' action='/sicam/j_spring_security_check' method='POST'>
+				<p class="login-box-msg">Insira suas credenciais</p>
+
+				<div class="form-group has-feedback">
+					<input type='text' name='j_username' class="form-control"
+						placeholder="CPF" />
+				</div>
+				<div class="form-group has-feedback">
+					<input type='password' name='j_password' class="form-control"
+						placeholder="SENHA" />
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<input type="submit" class="btn btn-success btn-block"
+							name="submit" value="Entrar" />
+					</div>
+				</div>
+			</form>
+
+
+
+		</div>
+	</div>
+	<h:outputScript library="js" name="admintemplate.js" target="head" />
+</h:body>
+</html>
