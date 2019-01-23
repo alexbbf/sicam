@@ -29,6 +29,26 @@ public class Seguranca extends AdminSession {
 
 		return nome;
 	}
+	
+	public String getNomeCompleto(){
+		String nomeCompleto = null;
+		UsuarioSistema usuarioLogado = getUsuarioLogado();
+		
+		if(usuarioLogado != null){
+			nomeCompleto = usuarioLogado.getMilitar().getNome();
+		}
+		return nomeCompleto;
+	}
+	
+	public String getNomeGuerra(){
+		String nomeGuerra = null;
+		UsuarioSistema usuarioLogado = getUsuarioLogado();
+		
+		if(usuarioLogado != null){
+			nomeGuerra = usuarioLogado.getMilitar().getNomeGuerra();
+		}
+		return nomeGuerra;
+	}
 
 	private UsuarioSistema getUsuarioLogado() {
 		UsuarioSistema usuario = null;

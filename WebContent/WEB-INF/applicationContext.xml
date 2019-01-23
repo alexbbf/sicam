@@ -11,14 +11,14 @@
 
 	<context:annotation-config />
 	<beans:bean id="appUserDetailService" class="sicam.security.AppUserDetailService"></beans:bean>
-	<http pattern="/logar2.xhtml" security="none" />
+	<http pattern="/logar.xhtml" security="none" />
 	<http pattern="/javax.faces.resource/**" security="none" />
 	<http pattern="/include/**" security="none" />
 	<http auto-config="false" use-expressions="true">
-		<form-login login-page="/logar2.xhtml"
-			authentication-failure-url="/logar2.xhtml?invalid=true" default-target-url="/index.xhtml"
+		<form-login login-page="/logar.xhtml"
+			authentication-failure-url="/logar.xhtml?invalid=true" default-target-url="/index.xhtml"
 			always-use-default-target="true" />
-		<logout logout-success-url="/logar2.xhtml" invalidate-session="true" />
+		<logout logout-success-url="/logar.xhtml" invalidate-session="true" />
 		<intercept-url pattern="/dpl/**" access="hasAnyRole('ROLE_DPL,ROLE_DIE')"></intercept-url>
 	</http>
 	<authentication-manager>
