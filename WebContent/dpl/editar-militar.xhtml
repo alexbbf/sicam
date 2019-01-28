@@ -94,9 +94,10 @@
 
 							<p:outputLabel value="Raça" for="raca" />
 							<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}"
-								required="true" requiredMessage="Campo RAÇA é obrigatório">
-								<f:selectItems value="#{aplicacaoMB.racas}" var="_r"
-									itemLabel="#{_r.label}" itemValue="#{_r}" />
+								converter="entityConverter" required="true"
+								requiredMessage="Campo RAÇA é obrigatório">
+								<f:selectItems value="#{racaMB.racas}" var="_r"
+									itemLabel="#{_r.descricao}" itemValue="#{_r}" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Data de Nascimento" for="datanascimento" />
@@ -194,15 +195,16 @@
 								requiredMessage="Campo CPF é obrigatório" />
 
 							<p:outputLabel value="PIS/PASEP" for="pispasep" />
-							<p:inputText id="pispasep" value="#{militarMB.militar.pisPasep}"
-								required="false" requiredMessage="Campo PIS/PASEP é obrigatório" />
+							<p:inputMask mask="999.99999.99-9" id="pispasep"
+								value="#{militarMB.militar.pisPasep}" required="false"
+								requiredMessage="Campo PIS/PASEP é obrigatório" />
 
 							<p:outputLabel value="CTPS" for="ctps" />
 							<p:inputText id="ctps" value="#{militarMB.militar.ctps}"
 								required="false" requiredMessage="Campo CTPS é obrigatório" />
 
 							<p:outputLabel value="Titulo de eleitor" for="tituloeleitor" />
-							<p:inputText id="tituloeleitor"
+							<p:inputMask id="tituloeleitor" mask="9999 9999 9999"
 								value="#{militarMB.militar.tituloEleitor.numero}"
 								required="false"
 								requiredMessage="Campo  Título de eleitor obrigatório" />

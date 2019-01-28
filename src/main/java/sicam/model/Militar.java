@@ -28,7 +28,7 @@ public class Militar {
 	@Enumerated(EnumType.STRING)
 	private Sexo sexo;
 
-	@Enumerated(EnumType.STRING)
+	@ManyToOne
 	private Raca raca;
 
 	@Temporal(TemporalType.DATE)

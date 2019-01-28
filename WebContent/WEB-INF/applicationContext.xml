@@ -20,6 +20,7 @@
 			always-use-default-target="true" />
 		<logout logout-success-url="/logar.xhtml" invalidate-session="true" />
 		<intercept-url pattern="/dpl/**" access="hasAnyRole('ROLE_DPL,ROLE_DIE')"></intercept-url>
+		<intercept-url pattern="/editar-dados.xhtml" access="isAuthenticated()"></intercept-url>
 	</http>
 	<authentication-manager>
 		<authentication-provider user-service-ref="appUserDetailService">

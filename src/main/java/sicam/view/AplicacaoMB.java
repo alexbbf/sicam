@@ -7,7 +7,6 @@ import sicam.model.CategoriaCNH;
 import sicam.model.ChavePesquisaMilitar;
 import sicam.model.EstadoCivil;
 import sicam.model.FatorRh;
-import sicam.model.Raca;
 import sicam.model.Sexo;
 import sicam.model.SituacaoMilitar;
 import sicam.model.SituacaoMilitarAtiva;
@@ -24,7 +23,6 @@ public class AplicacaoMB {
 	private SituacaoMilitarAtiva atividade = SituacaoMilitarAtiva.ATIVIDADE;
 	
 	private Sexo[] sexos = Sexo.values();
-	private Raca[] racas = Raca.values();
 	private TipoSanguineo[] tiposSanguineos = TipoSanguineo.values();
 	private FatorRh[] fatoresRH = FatorRh.values();
 	private CategoriaCNH[] categoriasCNH = CategoriaCNH.values();
@@ -36,10 +34,6 @@ public class AplicacaoMB {
 
 	public Sexo[] getSexos() {
 		return sexos;
-	}
-	
-	public Raca[] getRacas() {
-		return racas;
 	}
 	
 	public FatorRh[] getFatoresRH() {
