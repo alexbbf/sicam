@@ -39,8 +39,9 @@
 				</li>
 				<li class="user-footer"><h:form prependId="false">
 						<div class="pull-left">
-							<p:commandLink styleClass="btn btn-danger"
-								value="Editar dados" />
+						<p:link href="/editar-dados.xhtml" onclick="#{militarMB.militarLogado()}" styleClass="btn btn-danger" value="Editar dados"/>
+<!-- 							<p:commandLink styleClass="btn btn-danger" action="#{militarMB.militarLogado()}" -->
+<!-- 								value="Editar dados" /> -->
 						</div>
 						<div class="pull-right">
 							<!--                             <p:commandLink id="logout" action="/j_spring_security_logout" title="Sair"> -->

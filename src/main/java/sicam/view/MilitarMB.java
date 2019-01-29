@@ -6,11 +6,15 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
+
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import sicam.business.MilitarBusiness;
 import sicam.dto.MilitarDTO;
 import sicam.model.ChavePesquisaMilitar;
 import sicam.model.Militar;
+import sicam.security.UsuarioSistema;
 
 @ManagedBean
 @ViewScoped
@@ -41,6 +45,23 @@ public class MilitarMB {
 		} catch (NullPointerException npe) {
 			
 		}
+	}
+	
+	public void militarLogado(){
+		UsuarioSistema usuario = null;
+		try {
+			UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) FacesContext
+					.getCurrentInstance().getExternalContext()
+					.getUserPrincipal();
+
+			if (auth != null && auth.getPrincipal() != null) {
+				usuario = (UsuarioSistema) auth.getPrincipal();
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+		}
+		militar = usuario.getMilitar();
+		
 	}
 	
 	public void pesquisar(){
