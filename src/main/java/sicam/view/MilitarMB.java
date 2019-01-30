@@ -8,10 +8,12 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.model.UploadedFile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import sicam.business.MilitarBusiness;
 import sicam.dto.MilitarDTO;
+import sicam.model.Anexo;
 import sicam.model.ChavePesquisaMilitar;
 import sicam.model.Militar;
 import sicam.security.UsuarioSistema;
@@ -32,6 +34,16 @@ public class MilitarMB {
 	private ChavePesquisaMilitar chavePesquisa;
 	
 	private String palavraPesquisa;
+	
+	private UploadedFile arquivo;
+	
+	public void upload(){
+		if(arquivo != null){
+			Anexo foto = new Anexo();
+			foto.setArquivo(arquivo.getContents());
+			militar.setFoto(foto);
+		}
+	}
 	
 	public void salvar(){
 		militar = business.salvar(militar);
@@ -67,6 +79,8 @@ public class MilitarMB {
 	public void pesquisar(){
 		militaresDTO = business.pesquisar(palavraPesquisa, chavePesquisa);
 	}
+	
+	
 
 	public Militar getMilitar() {
 		return militar;
@@ -106,6 +120,14 @@ public class MilitarMB {
 
 	public void setMilitarDTOSelecionado(MilitarDTO militarDTOSelecionado) {
 		this.militarDTOSelecionado = militarDTOSelecionado;
+	}
+
+	public UploadedFile getArquivo() {
+		return arquivo;
+	}
+
+	public void setArquivo(UploadedFile arquivo) {
+		this.arquivo = arquivo;
 	}
 	
 	

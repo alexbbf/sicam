@@ -37,8 +37,9 @@
 							</p:selectOneRadio>
 
 							<p:outputLabel value="Raça" for="raca" />
-							<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}" converter="entityConverter"
-								required="true" requiredMessage="Campo RAÇA é obrigatório">
+							<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}"
+								converter="entityConverter" required="true"
+								requiredMessage="Campo RAÇA é obrigatório">
 								<f:selectItems value="#{racaMB.racas}" var="_r"
 									itemLabel="#{_r.descricao}" itemValue="#{_r}" />
 							</p:selectOneMenu>
@@ -138,8 +139,9 @@
 								requiredMessage="Campo CPF é obrigatório" />
 
 							<p:outputLabel value="PIS/PASEP" for="pispasep" />
-							<p:inputMask mask="999.99999.99-9" id="pispasep" value="#{militarMB.militar.pisPasep}"
-								required="false" requiredMessage="Campo PIS/PASEP é obrigatório" />
+							<p:inputMask mask="999.99999.99-9" id="pispasep"
+								value="#{militarMB.militar.pisPasep}" required="false"
+								requiredMessage="Campo PIS/PASEP é obrigatório" />
 
 							<p:outputLabel value="CTPS" for="ctps" />
 							<p:inputText id="ctps" value="#{militarMB.militar.ctps}"
@@ -478,7 +480,8 @@
 
 							<p:outputLabel value="Lotação" for="lotacao" />
 							<p:selectOneMenu id="lotacao" converter="entityConverter"
-								value="#{militarMB.militar.setor}" required="true" disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
+								value="#{militarMB.militar.setor}" required="true"
+								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
 								requiredMessage="Campo Lotação é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{setorMB.setores}" var="_s"
@@ -544,6 +547,23 @@
 						<!-- 							<p:column headerText="Remover"> -->
 						<!-- 							</p:column> -->
 						<!-- 						</p:dataTable> -->
+
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" update="tabview" />
+					</h:form>
+				</p:tab>
+				<p:tab title="Arquivos">
+					<h:form>
+						
+
+							<p:fileUpload value="#{anexoMB.arquivo}" mode="advanced"
+								sizeLimit="100000" fileLimit="1"
+								allowTypes="/(\.|\/)(gif|jpe?g|png)$/" label="Selecionar" uploadLabel="Enviar" cancelLabel="Cancelar" />
+
+						
+
 
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"

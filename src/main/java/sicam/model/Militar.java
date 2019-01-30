@@ -132,6 +132,9 @@ public class Militar {
 
 	private String senha;
 
+	@ManyToOne
+	private Anexo foto;
+
 	public Integer getId() {
 		return id;
 	}
@@ -501,6 +504,14 @@ public class Militar {
 
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+
+	public Anexo getFoto() {
+		return foto;
+	}
+
+	public void setFoto(Anexo foto) {
+		this.foto = foto;
 	}
 
 	@Override
