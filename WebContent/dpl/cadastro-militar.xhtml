@@ -556,14 +556,13 @@
 				</p:tab>
 				<p:tab title="Arquivos">
 					<h:form>
-						
+						<p:outputLabel value="ENVIE UMA FOTO DE PERFIL" />
 
-							<p:fileUpload value="#{anexoMB.arquivo}" mode="advanced"
-								sizeLimit="100000" fileLimit="1"
-								allowTypes="/(\.|\/)(gif|jpe?g|png)$/" label="Selecionar" uploadLabel="Enviar" cancelLabel="Cancelar" />
-
-						
-
+						<p:fileUpload  mode="advanced" value="#{militarMB.file}"
+							sizeLimit="100000" fileLimit="1"
+							fileUploadListener="#{militarMB.handleFileUpload}"
+							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" label="Selecionar"
+							uploadLabel="Enviar" cancelLabel="Cancelar" />
 
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"

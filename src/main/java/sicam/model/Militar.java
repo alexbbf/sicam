@@ -132,7 +132,7 @@ public class Militar {
 
 	private String senha;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Anexo foto;
 
 	public Integer getId() {
