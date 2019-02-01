@@ -7,8 +7,11 @@ import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.PhaseId;
 
 import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.primefaces.model.UploadedFile;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
@@ -18,6 +21,7 @@ import sicam.model.Anexo;
 import sicam.model.ChavePesquisaMilitar;
 import sicam.model.Militar;
 import sicam.security.UsuarioSistema;
+import sicam.util.ImageUtil;
 
 @ManagedBean
 @ViewScoped
@@ -28,6 +32,8 @@ public class MilitarMB {
 
 	private Militar militar = new Militar();
 
+	private Militar militarLogado = new Militar();
+
 	private List<MilitarDTO> militaresDTO = new ArrayList<MilitarDTO>();
 
 	private MilitarDTO militarDTOSelecionado;
@@ -37,6 +43,8 @@ public class MilitarMB {
 	private String palavraPesquisa;
 
 	private UploadedFile file;
+	
+	private StreamedContent fotoLogado;
 
 	public void handleFileUpload(FileUploadEvent event) {
 		Anexo foto = new Anexo();
@@ -44,8 +52,28 @@ public class MilitarMB {
 		militar.setFoto(foto);
 	}
 
+	public StreamedContent getFotoLogado() {
+		if (FacesContext.getCurrentInstance().getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
+			System.out.println("IF");
+			return new DefaultStreamedContent();
+		} else {
+			System.out.println("ELSE");
+			fotoLogado = ImageUtil.byteParaImagem(militarLogado.getFoto()
+					.getArquivo()); 
+			return fotoLogado;
+		}
+	}
+	
+	public void carregaFoto(){
+		getFotoLogado();
+	}
+
 	public void salvar() {
 		militar = business.salvar(militar);
+	}
+
+	public void salvarMilitarLogado() {
+		militar = business.salvar(militarLogado);
 	}
 
 	public void selecionarDTO() {
@@ -71,7 +99,7 @@ public class MilitarMB {
 		} catch (NullPointerException npe) {
 			npe.printStackTrace();
 		}
-		militar = usuario.getMilitar();
+		militarLogado = usuario.getMilitar();
 
 	}
 
@@ -125,6 +153,27 @@ public class MilitarMB {
 
 	public void setFile(UploadedFile arquivo) {
 		this.file = arquivo;
+	}
+
+	public Militar getMilitarLogado() {
+		UsuarioSistema usuario = null;
+		try {
+			UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) FacesContext
+					.getCurrentInstance().getExternalContext()
+					.getUserPrincipal();
+
+			if (auth != null && auth.getPrincipal() != null) {
+				usuario = (UsuarioSistema) auth.getPrincipal();
+			}
+		} catch (NullPointerException npe) {
+			npe.printStackTrace();
+		}
+		militarLogado = usuario.getMilitar();
+		return militarLogado;
+	}
+
+	public void setMilitarLogado(Militar militarLogado) {
+		this.militarLogado = militarLogado;
 	}
 
 }

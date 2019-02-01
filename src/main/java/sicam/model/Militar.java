@@ -509,7 +509,9 @@ public class Militar {
 	public Anexo getFoto() {
 		return foto;
 	}
-
+	
+	
+	
 	public void setFoto(Anexo foto) {
 		this.foto = foto;
 	}

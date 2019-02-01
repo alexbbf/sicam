@@ -26,18 +26,18 @@
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 							layout="grid" styleClass="ui-fluid card">
 							<p:outputLabel for="nomeMilitar" value="Nome completo" />
-							<p:inputText id="nomeMilitar" value="#{militarMB.militar.nome}"
+							<p:inputText id="nomeMilitar" value="#{militarMB.militarLogado.nome}"
 								required="true" requiredMessage="Campo NOME é obrigatório" />
 
 							<p:outputLabel for="sexo" value="Sexo" />
-							<p:selectOneRadio id="sexo" value="#{militarMB.militar.sexo}"
+							<p:selectOneRadio id="sexo" value="#{militarMB.militarLogado.sexo}"
 								required="true" requiredMessage="Campo SEXO é obrigatório">
 								<f:selectItems value="#{aplicacaoMB.sexos}" var="_s"
 									itemLabel="#{_s.label}" itemValue="#{_s}" />
 							</p:selectOneRadio>
 
 							<p:outputLabel value="Raça" for="raca" />
-							<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}" converter="entityConverter"
+							<p:selectOneMenu id="raca" value="#{militarMB.militarLogado.raca}" converter="entityConverter"
 								required="true" requiredMessage="Campo RAÇA é obrigatório">
 								<f:selectItems value="#{racaMB.racas}" var="_r"
 									itemLabel="#{_r.descricao}" itemValue="#{_r}" />
@@ -45,7 +45,7 @@
 
 							<p:outputLabel value="Data de Nascimento" for="datanascimento" />
 							<p:inputMask id="datanascimento"
-								value="#{militarMB.militar.dataNascimento}" mask="99/99/9999"
+								value="#{militarMB.militarLogado.dataNascimento}" mask="99/99/9999"
 								required="true" styleClass="form-control"
 								requiredMessage="Campo DATA DE NASCIMENTO é obrigatório">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -55,7 +55,7 @@
 							<h:panelGrid columns="2"
 								columnClasses="ui-grid-col-2,ui-grid-col-2">
 								<p:selectOneMenu id="tiposanguineo"
-									value="#{militarMB.militar.tipoSanquino}" required="true"
+									value="#{militarMB.militarLogado.tipoSanquino}" required="true"
 									requiredMessage="Campo obrigatório"
 									converterMessage="Tipo inválido">
 									<f:selectItem noSelectionOption="true" itemLabel="" />
@@ -63,7 +63,7 @@
 										itemLabel="#{_t}" itemValue="#{_t}" />
 								</p:selectOneMenu>
 								<p:selectOneMenu id="fatorrh"
-									value="#{militarMB.militar.fatorRh}" required="true"
+									value="#{militarMB.militarLogado.fatorRh}" required="true"
 									requiredMessage="Campo obrigatório"
 									converterMessage="Fator inválido">
 									<f:selectItem noSelectionOption="true" itemLabel="" />
@@ -74,36 +74,36 @@
 
 							<p:outputLabel for="naturalidade" value="Naturalidade" />
 							<p:inputText id="naturalidade" placeholder="Ex: Boa Vista - RR"
-								value="#{militarMB.militar.naturalidade}" required="true"
+								value="#{militarMB.militarLogado.naturalidade}" required="true"
 								requiredMessage="Campo NATURALIDADE é obrigatório" />
 
 							<p:outputLabel for="email" value="Email" />
-							<p:inputText id="email" value="#{militarMB.militar.email}"
+							<p:inputText id="email" value="#{militarMB.militarLogado.email}"
 								required="true" requiredMessage="Campo EMAIL é obrigatório" />
 
 
 							<p:outputLabel value="Telefone fixo" for="telfixo" />
 							<p:inputMask id="telfixo" mask="(99)9999-9999"
-								value="#{militarMB.militar.telefoneFixo}" required="false" />
+								value="#{militarMB.militarLogado.telefoneFixo}" required="false" />
 
 							<p:outputLabel value="Celular" for="celular1" />
 							<p:inputMask id="celular1" mask="(99)9-9999-9999"
-								value="#{militarMB.militar.telefoneCelular1}" required="false" />
+								value="#{militarMB.militarLogado.telefoneCelular1}" required="false" />
 
 							<p:outputLabel value="Celular" for="celular2" />
 							<p:inputMask id="celular2" mask="(99)9-9999-9999"
-								value="#{militarMB.militar.telefoneCelular2}" required="false" />
+								value="#{militarMB.militarLogado.telefoneCelular2}" required="false" />
 
 							<p:outputLabel for="nomePai" value="Nome do Pai" />
-							<p:inputText id="nomePai" value="#{militarMB.militar.nomePai}" />
+							<p:inputText id="nomePai" value="#{militarMB.militarLogado.nomePai}" />
 
 							<p:outputLabel for="nomeMae" value="Nome da Mãe" />
-							<p:inputText id="nomeMae" value="#{militarMB.militar.nomeMae}" />
+							<p:inputText id="nomeMae" value="#{militarMB.militarLogado.nomeMae}" />
 
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}"
+							action="#{militarMB.salvarMilitarLogado}"
 							actionListener="#{tabViewMB.nextTab(1)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
@@ -115,17 +115,17 @@
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 							layout="grid" styleClass="ui-fluid card">
 							<p:outputLabel value="Número RG" for="rg" />
-							<p:inputText id="rg" value="#{militarMB.militar.rg.numero}"
+							<p:inputText id="rg" value="#{militarMB.militarLogado.rg.numero}"
 								required="true" requiredMessage="Campo Número RG é obrigatório" />
 
 							<p:outputLabel value="Orgão expeditor" for="orgaoexpeditor" />
 							<p:inputText id="orgaoexpeditor"
-								value="#{militarMB.militar.rg.orgaoExpeditor}" required="false"
+								value="#{militarMB.militarLogado.rg.orgaoExpeditor}" required="false"
 								requiredMessage="Campo  Orgão Expeditor é obrigatório" />
 
 							<p:outputLabel value="Data de expedição" for="dataexpedicaorg" />
 							<p:calendar id="dataexpedicaorg"
-								value="#{militarMB.militar.rg.dataExpedicao}" locale="pt"
+								value="#{militarMB.militarLogado.rg.dataExpedicao}" locale="pt"
 								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
 								yearRange="c-70:c" required="false"
 								requiredMessage="Campo Data de expedição é obrigatório!">
@@ -134,36 +134,36 @@
 
 							<p:outputLabel value="CPF" for="cpf" />
 							<p:inputMask id="cpf" mask="999.999.999-99"
-								value="#{militarMB.militar.cpf}" required="true"
+								value="#{militarMB.militarLogado.cpf}" required="true"
 								requiredMessage="Campo CPF é obrigatório" />
 
 							<p:outputLabel value="PIS/PASEP" for="pispasep" />
-							<p:inputMask mask="999.99999.99-9" id="pispasep" value="#{militarMB.militar.pisPasep}"
+							<p:inputMask mask="999.99999.99-9" id="pispasep" value="#{militarMB.militarLogado.pisPasep}"
 								required="false" requiredMessage="Campo PIS/PASEP é obrigatório" />
 
 							<p:outputLabel value="CTPS" for="ctps" />
-							<p:inputText id="ctps" value="#{militarMB.militar.ctps}"
+							<p:inputText id="ctps" value="#{militarMB.militarLogado.ctps}"
 								required="false" requiredMessage="Campo CTPS é obrigatório" />
 
 							<p:outputLabel value="Titulo de eleitor" for="tituloeleitor" />
 							<p:inputMask id="tituloeleitor" mask="9999 9999 9999"
-								value="#{militarMB.militar.tituloEleitor.numero}"
+								value="#{militarMB.militarLogado.tituloEleitor.numero}"
 								required="false"
 								requiredMessage="Campo  Título de eleitor obrigatório" />
 
 							<p:outputLabel value="Zona" for="zona" />
 							<p:inputText id="zona"
-								value="#{militarMB.militar.tituloEleitor.zona}" required="false"
+								value="#{militarMB.militarLogado.tituloEleitor.zona}" required="false"
 								requiredMessage="Campo Zona é obrigatório" />
 
 							<p:outputLabel value="Seção" for="secao" />
 							<p:inputText id="secao"
-								value="#{militarMB.militar.tituloEleitor.secao}"
+								value="#{militarMB.militarLogado.tituloEleitor.secao}"
 								required="false" requiredMessage="Campo Seção é obrigatório" />
 
 							<p:outputLabel value="Data de emissão" for="dataemissaotitulo" />
 							<p:calendar id="dataemissaotitulo" styleClass="campo_data"
-								value="#{militarMB.militar.tituloEleitor.dataEmissao}"
+								value="#{militarMB.militarLogado.tituloEleitor.dataEmissao}"
 								locale="pt" navigator="true" pattern="dd/MM/yyyy"
 								mask="99/99/9999" yearRange="c-70:c" required="false"
 								requiredMessage="Campo Data de emissão é obrigatório!">
@@ -172,12 +172,12 @@
 
 							<p:outputLabel value="Num. Reg. CNH" for="cnh" />
 							<p:inputText id="cnh"
-								value="#{militarMB.militar.cnh.numRegistro}" required="false"
+								value="#{militarMB.militarLogado.cnh.numRegistro}" required="false"
 								requiredMessage="Campo Num CNH é obrigatório" />
 
 							<p:outputLabel value="Categoria CNH" for="categoriacnh" />
 							<p:selectOneMenu id="categoriacnh"
-								value="#{militarMB.militar.cnh.categoria}" required="false"
+								value="#{militarMB.militarLogado.cnh.categoria}" required="false"
 								requiredMessage="Campo obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{aplicacaoMB.categoriasCNH}" var="_c"
@@ -186,7 +186,7 @@
 
 							<p:outputLabel value="Data de emissão CNH" for="dataemissaocnh" />
 							<p:calendar id="dataemissaocnh"
-								value="#{militarMB.militar.cnh.dataEmissao}" locale="pt"
+								value="#{militarMB.militarLogado.cnh.dataEmissao}" locale="pt"
 								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
 								yearRange="c-70:c" required="false"
 								requiredMessage="Campo Data emissão é obrigatório!">
@@ -195,7 +195,7 @@
 
 							<p:outputLabel value="Data de validade CNH" for="datavalidadecnh" />
 							<p:calendar id="datavalidadecnh"
-								value="#{militarMB.militar.cnh.dataValidade}" locale="pt"
+								value="#{militarMB.militarLogado.cnh.dataValidade}" locale="pt"
 								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
 								yearRange="c-70:c" required="false"
 								requiredMessage="Campo Data validade CNH é obrigatório!">
@@ -203,7 +203,7 @@
 							</p:calendar>
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}"
+							action="#{militarMB.salvarMilitarLogado}"
 							actionListener="#{tabViewMB.nextTab(2)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
@@ -218,7 +218,7 @@
 								forceSelection="false"
 								requiredMessage="Campo Logradouro é obrigatório!"
 								placeholder="Ex: Avenida Ville Roy"
-								value="#{militarMB.militar.endereco.logradouro}"
+								value="#{militarMB.militarLogado.endereco.logradouro}"
 								completeMethod="#{autoCompleteMB.autoCompleteLograoduro}"
 								var="l" itemLabel="#{l}" itemValue="#{l}" />
 
@@ -226,24 +226,24 @@
 							<p:autoComplete id="bairro" required="true" forceSelection="true"
 								requiredMessage="Campo Bairro é Obrigatório!"
 								placeholder="Ex: Pricumã" converter="entityConverter"
-								value="#{militarMB.militar.endereco.bairro}"
+								value="#{militarMB.militarLogado.endereco.bairro}"
 								completeMethod="#{autoCompleteMB.autoCompleteBairro}" var="l"
 								itemLabel="#{l.descricao}" itemValue="#{l}" />
 
 							<p:outputLabel value="CEP" for="cep" />
 							<p:inputMask id="cep" mask="99999-999"
-								value="#{militarMB.militar.endereco.cep}" required="false"
+								value="#{militarMB.militarLogado.endereco.cep}" required="false"
 								requiredMessage="Campo CEP é obrigatorio" />
 
 							<p:outputLabel for="complemento" value="Complemento" />
 							<p:inputText id="complemento"
-								value="#{militarMB.militar.endereco.complemento}"
+								value="#{militarMB.militarLogado.endereco.complemento}"
 								required="false"
 								requiredMessage="Campo Complemento é obrigatório" />
 
 							<p:outputLabel for="referencia" value="Referência" />
 							<p:inputText id="referencia"
-								value="#{militarMB.militar.endereco.referencia}"
+								value="#{militarMB.militarLogado.endereco.referencia}"
 								required="false"
 								requiredMessage="Campo Referência é obrigatório" />
 
@@ -252,13 +252,13 @@
 								forceSelection="true"
 								requiredMessage="Campo Município é Obrigatório!"
 								placeholder="Ex: Boa Vista" converter="entityConverter"
-								value="#{militarMB.militar.endereco.municipio}"
+								value="#{militarMB.militarLogado.endereco.municipio}"
 								completeMethod="#{autoCompleteMB.autoCompleteMunicipioRR}"
 								var="l" itemLabel="#{l.descricao}" itemValue="#{l}" />
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}"
+							action="#{militarMB.salvarMilitarLogado}"
 							actionListener="#{tabViewMB.nextTab(3)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
@@ -271,41 +271,41 @@
 							<p:autoUpdate />
 							<p:outputLabel value="Estado Civil" for="estadocivil" />
 							<p:selectOneMenu id="estadocivil"
-								value="#{militarMB.militar.estadoCivil}" required="true"
+								value="#{militarMB.militarLogado.estadoCivil}" required="true"
 								requiredMessage="Campo Estado Civil é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{aplicacaoMB.estadosCivis}" var="_e"
 									itemLabel="#{_e.label}" itemValue="#{_e}" />
 								<p:ajax process="@this"
-									listener="#{estadoCivilMB.definirEstadoCivilSelecionado(militarMB.militar.estadoCivil)}" />
+									listener="#{estadoCivilMB.definirEstadoCivilSelecionado(militarMB.militarLogado.estadoCivil)}" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Nome do cônjuge" for="nomeconjuge" />
 							<p:inputText id="nomeconjuge" disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.nome}" required="true"
+								value="#{militarMB.militarLogado.conjuge.nome}" required="true"
 								requiredMessage="Campo obrigatório">
 							</p:inputText>
 
 							<p:outputLabel value="RG do cônjuge" for="rgconjuge" />
 							<p:inputText id="rgconjuge" disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.rg}" required="false"
+								value="#{militarMB.militarLogado.conjuge.rg}" required="false"
 								requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="CPF do cônjuge" for="cpfconjuge" />
 							<p:inputMask id="cpfconjuge" mask="999.999.999-99"
 								disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.cpf}" required="false"
+								value="#{militarMB.militarLogado.conjuge.cpf}" required="false"
 								requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="PIS/PASEP do cônjuge" for="pisconjuge" />
 							<p:inputMask id="pisconjuge" mask="999.99999.99-9"
 								disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.pisPasep}" required="false"
+								value="#{militarMB.militarLogado.conjuge.pisPasep}" required="false"
 								requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Data da união" for="datauniao" />
 							<p:calendar id="datauniao" disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.dataUniao}" locale="pt"
+								value="#{militarMB.militarLogado.conjuge.dataUniao}" locale="pt"
 								navigator="true" pattern="dd/MM/yyyy" mask="99/99/9999"
 								yearRange="c-30:c">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -314,33 +314,33 @@
 							<p:outputLabel value="Número da certidão" for="numerocertidao" />
 							<p:inputText id="numerocertidao"
 								disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.numeroCertidao}"
+								value="#{militarMB.militarLogado.conjuge.numeroCertidao}"
 								required="false" requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Número do livro" for="numerolivro" />
 							<p:inputText id="numerolivro" disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.numeroLivro}"
+								value="#{militarMB.militarLogado.conjuge.numeroLivro}"
 								required="false" requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Número da folha" for="numerofolha" />
 							<p:inputText id="numerofolha" disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.numeroFolha}"
+								value="#{militarMB.militarLogado.conjuge.numeroFolha}"
 								required="false" requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Nome do cartório" for="nomecartorio" />
 							<p:inputText id="nomecartorio"
 								disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.nomeCartorio}"
+								value="#{militarMB.militarLogado.conjuge.nomeCartorio}"
 								required="false" requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Comarca" for="comarca" />
 							<p:inputText id="comarca" disabled="#{!estadoCivilMB.casado}"
-								value="#{militarMB.militar.conjuge.comarca}" required="false"
+								value="#{militarMB.militarLogado.conjuge.comarca}" required="false"
 								requiredMessage="Campo obrigatório" />
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}"
+							action="#{militarMB.salvarMilitarLogado}"
 							actionListener="#{tabViewMB.nextTab(4)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
@@ -353,7 +353,7 @@
 
 							<p:outputLabel value="Banco" for="banco" />
 							<p:selectOneMenu id="banco"
-								value="#{militarMB.militar.dadosBancarios.banco}"
+								value="#{militarMB.militarLogado.dadosBancarios.banco}"
 								required="false" requiredMessage="Campo Banco é obrigatório"
 								converter="entityConverter">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
@@ -363,17 +363,17 @@
 
 							<p:outputLabel value="Agência" for="agencia" />
 							<p:inputText id="agencia"
-								value="#{militarMB.militar.dadosBancarios.agencia}"
+								value="#{militarMB.militarLogado.dadosBancarios.agencia}"
 								required="false" requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Conta" for="conta" />
 							<p:inputText id="conta"
-								value="#{militarMB.militar.dadosBancarios.conta}"
+								value="#{militarMB.militarLogado.dadosBancarios.conta}"
 								required="false" requiredMessage="Campo obrigatório" />
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}"
+							action="#{militarMB.salvarMilitarLogado}"
 							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
@@ -387,12 +387,12 @@
 
 							<p:outputLabel value="Nome de guerra" for="nomedeguerra" />
 							<p:inputText id="nomedeguerra"
-								value="#{militarMB.militar.nomeGuerra}" required="true"
+								value="#{militarMB.militarLogado.nomeGuerra}" required="true"
 								requiredMessage="Campo Nome de Guerra é obrigatório" />
 
 							<p:outputLabel value="Vínculo" for="vinculo" />
 							<p:selectOneMenu id="vinculo"
-								value="#{militarMB.militar.vinculo}" required="true"
+								value="#{militarMB.militarLogado.vinculo}" required="true"
 								requiredMessage="Campo Vínculo obrigatório">
 								<f:selectItems value="#{aplicacaoMB.vinculos}" var="_c"
 									itemLabel="#{_c.label}" itemValue="#{_c}" />
@@ -401,19 +401,19 @@
 
 							<p:outputLabel value="Matrícula" for="matricula" />
 							<p:inputText id="matricula"
-								value="#{militarMB.militar.matricula}" required="true"
+								value="#{militarMB.militarLogado.matricula}" required="true"
 								requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Siape" for="siape" />
 							<p:inputText
-								disabled="#{militarMB.militar.vinculo ne aplicacaoMB.federal}"
-								id="siape" value="#{militarMB.militar.siape}" required="true"
+								disabled="#{militarMB.militarLogado.vinculo ne aplicacaoMB.federal}"
+								id="siape" value="#{militarMB.militarLogado.siape}" required="true"
 								requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Data de Incorporação"
 								for="dataincorporacao" />
 							<p:inputMask id="dataincorporacao"
-								value="#{militarMB.militar.dataIncorporacao}" mask="99/99/9999"
+								value="#{militarMB.militarLogado.dataIncorporacao}" mask="99/99/9999"
 								required="true"
 								requiredMessage="Campo Data de Incorporação é obrigatório">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -421,7 +421,7 @@
 
 							<p:outputLabel value="Quadro" for="quadro" />
 							<p:selectOneMenu id="quadro" converter="entityConverter"
-								value="#{militarMB.militar.quadro}" required="true"
+								value="#{militarMB.militarLogado.quadro}" required="true"
 								requiredMessage="Campo Quadro é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{quadroMB.quadros}" var="_q"
@@ -430,7 +430,7 @@
 
 							<p:outputLabel value="Posto/Graduação" for="postograduacao" />
 							<p:selectOneMenu id="postograduacao" converter="entityConverter"
-								value="#{militarMB.militar.postoGraduacao}" required="true"
+								value="#{militarMB.militarLogado.postoGraduacao}" required="true"
 								requiredMessage="Campo Posto/Graduação é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{postoGraduacaoMB.postosGraduacoes}"
@@ -439,7 +439,7 @@
 
 							<p:outputLabel value="Data de promoção" for="datapromocao" />
 							<p:inputMask id="datapromocao"
-								value="#{militarMB.militar.dataPromocao}" mask="99/99/9999"
+								value="#{militarMB.militarLogado.dataPromocao}" mask="99/99/9999"
 								required="true"
 								requiredMessage="Campo Data de Promoção é obrigatório">
 								<f:convertDateTime pattern="dd/MM/yyyy" />
@@ -447,7 +447,7 @@
 
 							<p:outputLabel value="Situação Militar" for="situacaomilitar" />
 							<p:selectOneMenu id="situacaomilitar"
-								value="#{militarMB.militar.situacaoMilitar}" required="true"
+								value="#{militarMB.militarLogado.situacaoMilitar}" required="true"
 								requiredMessage="Campo Situação Militar é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{aplicacaoMB.situacoesMilitar}" var="_c"
@@ -457,8 +457,8 @@
 
 							<p:outputLabel value="Situaçao" for="situacaoativa" />
 							<p:selectOneMenu id="situacaoativa"
-								disabled="#{militarMB.militar.situacaoMilitar ne aplicacaoMB.ativa}"
-								value="#{militarMB.militar.situacaoMilitarAtiva}"
+								disabled="#{militarMB.militarLogado.situacaoMilitar ne aplicacaoMB.ativa}"
+								value="#{militarMB.militarLogado.situacaoMilitarAtiva}"
 								required="true" requiredMessage="Campo Situação obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{aplicacaoMB.situacoesMilitarAtiva}"
@@ -469,16 +469,16 @@
 							<p:outputLabel value="Local de Agregação" for="localagregacao" />
 							<p:autoComplete id="localagregacao" required="true"
 								forceSelection="true"
-								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.agregado}"
+								disabled="#{militarMB.militarLogado.situacaoMilitarAtiva ne aplicacaoMB.agregado}"
 								requiredMessage="Campo Local de Agregação é Obrigatório!"
 								placeholder="Ex: APICS" converter="entityConverter"
-								value="#{militarMB.militar.localAgregacao}"
+								value="#{militarMB.militarLogado.localAgregacao}"
 								completeMethod="#{localAgregacaoMB.autoCompleteLocalAgregacao}"
 								var="l" itemLabel="#{l.descricao}" itemValue="#{l}" />
 
 							<p:outputLabel value="Lotação" for="lotacao" />
 							<p:selectOneMenu id="lotacao" converter="entityConverter"
-								value="#{militarMB.militar.setor}" required="true" disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
+								value="#{militarMB.militarLogado.setor}" required="true" disabled="#{militarMB.militarLogado.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
 								requiredMessage="Campo Lotação é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{setorMB.setores}" var="_s"
@@ -487,7 +487,7 @@
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}"
+							action="#{militarMB.salvarMilitarLogado}"
 							actionListener="#{tabViewMB.nextTab(6)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
@@ -501,7 +501,7 @@
 
 							<p:outputLabel value="Escolaridade" for="escolaridade" />
 							<p:selectOneMenu id="escolaridade" converter="entityConverter"
-								value="#{militarMB.militar.escolaridade}" required="true"
+								value="#{militarMB.militarLogado.escolaridade}" required="true"
 								requiredMessage="Campo Escolaridade é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{escolaridadeMB.escolaridades}" var="_p"
@@ -511,7 +511,7 @@
 						</p:panelGrid>
 						<hr />
 						<!-- 						<p:dataTable id="tablecurso" var="curso" -->
-						<!-- 							value="#{militarMB.militar.cursos}" -->
+						<!-- 							value="#{militarMB.militarLogado.cursos}" -->
 						<!-- 							emptyMessage="Nenhum curso infomado"> -->
 						<!-- 							<p:column headerText="Sigla"> -->
 						<!-- 								<h:outputText value="#{curso.curso.sigla}" /> -->
@@ -546,7 +546,7 @@
 						<!-- 						</p:dataTable> -->
 
 						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}"
+							action="#{militarMB.salvarMilitarLogado}"
 							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
