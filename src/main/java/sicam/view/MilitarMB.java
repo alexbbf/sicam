@@ -43,7 +43,7 @@ public class MilitarMB {
 	private String palavraPesquisa;
 
 	private UploadedFile file;
-	
+
 	private StreamedContent fotoLogado;
 
 	public void handleFileUpload(FileUploadEvent event) {
@@ -54,17 +54,15 @@ public class MilitarMB {
 
 	public StreamedContent getFotoLogado() {
 		if (FacesContext.getCurrentInstance().getCurrentPhaseId() == PhaseId.RENDER_RESPONSE) {
-			System.out.println("IF");
 			return new DefaultStreamedContent();
 		} else {
-			System.out.println("ELSE");
 			fotoLogado = ImageUtil.byteParaImagem(militarLogado.getFoto()
-					.getArquivo()); 
+					.getArquivo());
 			return fotoLogado;
 		}
 	}
-	
-	public void carregaFoto(){
+
+	public void carregaFoto() {
 		getFotoLogado();
 	}
 

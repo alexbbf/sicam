@@ -12,7 +12,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.envers.Audited;
+
 @Entity
+@Audited
 public class Curso {
 
 	@Id

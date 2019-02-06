@@ -9,7 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.envers.Audited;
+
 @Entity
+@Audited
 public class Conjuge {
 
 	@Id
