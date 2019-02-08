@@ -1,14 +1,12 @@
 package sicam.model;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -16,26 +14,22 @@ import org.hibernate.envers.Audited;
 
 @Entity
 @Audited
-public class Curso {
+public class CursoCivil {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@OneToMany(mappedBy = "curso")
-	private List<MilitarCursoNotas> militares;
+	@ManyToOne
+	private Militar militar;
 	
 	private String nome;
-	
-	private String sigla;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataInicio;
 	
 	@Temporal(TemporalType.DATE)
 	private Date dataFim;
-	
-	private Integer cargaHoraria;
 	
 	private String instituicao;
 	
@@ -56,14 +50,6 @@ public class Curso {
 		this.id = id;
 	}
 
-	public List<MilitarCursoNotas> getMilitares() {
-		return militares;
-	}
-
-	public void setMilitares(List<MilitarCursoNotas> militares) {
-		this.militares = militares;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -72,12 +58,14 @@ public class Curso {
 		this.nome = nome;
 	}
 
-	public String getSigla() {
-		return sigla;
+	
+
+	public Militar getMilitar() {
+		return militar;
 	}
 
-	public void setSigla(String sigla) {
-		this.sigla = sigla;
+	public void setMilitar(Militar militar) {
+		this.militar = militar;
 	}
 
 	public Date getDataInicio() {
@@ -94,14 +82,6 @@ public class Curso {
 
 	public void setDataFim(Date dataFim) {
 		this.dataFim = dataFim;
-	}
-
-	public Integer getCargaHoraria() {
-		return cargaHoraria;
-	}
-
-	public void setCargaHoraria(Integer cargaHoraria) {
-		this.cargaHoraria = cargaHoraria;
 	}
 
 	public String getInstituicao() {
@@ -152,7 +132,7 @@ public class Curso {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Curso other = (Curso) obj;
+		CursoCivil other = (CursoCivil) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;

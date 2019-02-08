@@ -18,7 +18,6 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.envers.Audited;
 
-
 @Entity
 @Audited
 public class Militar {
@@ -124,17 +123,25 @@ public class Militar {
 
 	@ManyToOne
 	private LocalAgregacao localAgregacao;
-
-	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-	private List<MilitarCursoNotas> cursos;
+	
+	private String documentoAgregacao;
 
 	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Permissao> permissoes;
+	
+	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<CursoCivil> cursosCivis;
 
 	@ManyToOne
 	private Escolaridade escolaridade;
 
 	private String senha;
+
+	@ManyToOne
+	private Idioma segundoIdioma;
+
+	@Enumerated(EnumType.STRING)
+	private NivelIdioma nivelIdioma;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Anexo foto;
@@ -478,14 +485,6 @@ public class Militar {
 		this.localAgregacao = localAgregacao;
 	}
 
-	public List<MilitarCursoNotas> getCursos() {
-		return cursos;
-	}
-
-	public void setCursos(List<MilitarCursoNotas> cursos) {
-		this.cursos = cursos;
-	}
-
 	public Escolaridade getEscolaridade() {
 		return escolaridade;
 	}
@@ -513,11 +512,42 @@ public class Militar {
 	public Anexo getFoto() {
 		return foto;
 	}
-	
-	
-	
+
 	public void setFoto(Anexo foto) {
 		this.foto = foto;
+	}
+	
+
+	public List<CursoCivil> getCursosCivis() {
+		return cursosCivis;
+	}
+
+	public void setCursosCivis(List<CursoCivil> cursosCivis) {
+		this.cursosCivis = cursosCivis;
+	}
+
+	public Idioma getSegundoIdioma() {
+		return segundoIdioma;
+	}
+
+	public void setSegundoIdioma(Idioma segundoIdioma) {
+		this.segundoIdioma = segundoIdioma;
+	}
+
+	public NivelIdioma getNivelIdioma() {
+		return nivelIdioma;
+	}
+
+	public void setNivelIdioma(NivelIdioma nivelIdioma) {
+		this.nivelIdioma = nivelIdioma;
+	}
+
+	public String getDocumentoAgregacao() {
+		return documentoAgregacao;
+	}
+
+	public void setDocumentoAgregacao(String documentoAgregacao) {
+		this.documentoAgregacao = documentoAgregacao;
 	}
 
 	@Override

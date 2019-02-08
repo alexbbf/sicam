@@ -465,7 +465,7 @@
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{aplicacaoMB.situacoesMilitarAtiva}"
 									var="_c" itemLabel="#{_c.label}" itemValue="#{_c}" />
-								<p:ajax update="localagregacao lotacao" />
+								<p:ajax update="localagregacao lotacao docagregacao" />
 							</p:selectOneMenu>
 
 							<p:outputLabel value="Local de Agregação" for="localagregacao" />
@@ -477,6 +477,11 @@
 								value="#{militarMB.militar.localAgregacao}"
 								completeMethod="#{localAgregacaoMB.autoCompleteLocalAgregacao}"
 								var="l" itemLabel="#{l.descricao}" itemValue="#{l}" />
+
+							<p:outputLabel value="Documento de Agregação" for="docagregacao" />
+							<p:inputText id="docagregacao" required="true" requiredMessage="Campo Documento de Agregação é obrigatório"
+								value="#{militarMB.militar.documentoAgregacao}"
+								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.agregado}" />
 
 							<p:outputLabel value="Lotação" for="lotacao" />
 							<p:selectOneMenu id="lotacao" converter="entityConverter"
@@ -496,7 +501,7 @@
 					</h:form>
 				</p:tab>
 
-				<p:tab title="Escolaridade">
+				<p:tab title="Formação">
 					<h:form>
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
@@ -511,42 +516,28 @@
 									itemLabel="#{_p.descricao}" itemValue="#{_p}" />
 							</p:selectOneMenu>
 
+							<p:outputLabel value="Segundo Idioma" for="segundoIdioma" />
+							<p:selectOneMenu id="segundoIdioma" converter="entityConverter"
+								value="#{militarMB.militar.segundoIdioma}" required="false"
+								requiredMessage="Campo Segundo Idioma é obrigatório">
+								<f:selectItem itemLabel="Nenhum" itemValue="#{null}" />
+								<f:selectItems value="#{idiomaMB.idiomas}" var="_p"
+									itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Nível do Idioma" for="nivelIdioma" />
+							<p:selectOneMenu id="nivelIdioma" converter="entityConverter"
+								value="#{militarMB.militar.nivelIdioma}" required="false"
+								requiredMessage="Campo Nivel do Idioma é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{aplicacaoMB.nivelIdioma}" var="_p"
+									itemLabel="#{_p.label}" itemValue="#{_p}" />
+							</p:selectOneMenu>
+
+
 						</p:panelGrid>
 						<hr />
-						<!-- 						<p:dataTable id="tablecurso" var="curso" -->
-						<!-- 							value="#{militarMB.militar.cursos}" -->
-						<!-- 							emptyMessage="Nenhum curso infomado"> -->
-						<!-- 							<p:column headerText="Sigla"> -->
-						<!-- 								<h:outputText value="#{curso.curso.sigla}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Área"> -->
-						<!-- 								<h:outputText value="#{curso.areaCurso.label}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Tipo"> -->
-						<!-- 								<h:outputText value="#{curso.tipoCurso.label}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Instituição"> -->
-						<!-- 								<h:outputText value="#{curso.curso.instituicao}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Início"> -->
-						<!-- 								<h:outputText value="#{curso.curso.dataInicio}"> -->
-						<!-- 									<f:convertDateTime pattern="dd/MM/yyyy" /> -->
-						<!-- 								</h:outputText> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Término"> -->
-						<!-- 								<h:outputText value="#{curso.curso.dataFim}"> -->
-						<!-- 									<f:convertDateTime pattern="dd/MM/yyyy" /> -->
-						<!-- 								</h:outputText> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="C.H."> -->
-						<!-- 								<h:outputText value="#{curso.curso.cargaHoraria}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Situação"> -->
-						<!-- 								<h:outputText value="#{curso.situacao.label}" /> -->
-						<!-- 							</p:column> -->
-						<!-- 							<p:column headerText="Remover"> -->
-						<!-- 							</p:column> -->
-						<!-- 						</p:dataTable> -->
+
 
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
@@ -554,22 +545,22 @@
 							icon="fa fa-save" validateClient="true" update="tabview" />
 					</h:form>
 				</p:tab>
-				<p:tab title="Arquivos">
-					<h:form>
-						<p:outputLabel value="ENVIE UMA FOTO DE PERFIL" />
+				<!-- 				<p:tab title="Arquivos"> -->
+				<!-- 					<h:form> -->
+				<!-- 						<p:outputLabel value="ENVIE UMA FOTO DE PERFIL" /> -->
 
-						<p:fileUpload  mode="advanced" value="#{militarMB.file}"
-							sizeLimit="100000" fileLimit="1"
-							fileUploadListener="#{militarMB.handleFileUpload}"
-							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" label="Selecionar"
-							uploadLabel="Enviar" cancelLabel="Cancelar" />
+				<!-- 						<p:fileUpload  mode="advanced" value="#{militarMB.file}" -->
+				<!-- 							sizeLimit="100000" fileLimit="1" -->
+				<!-- 							fileUploadListener="#{militarMB.handleFileUpload}" -->
+				<!-- 							allowTypes="/(\.|\/)(gif|jpe?g|png)$/" label="Selecionar" -->
+				<!-- 							uploadLabel="Enviar" cancelLabel="Cancelar" /> -->
 
-						<p:commandButton id="salvarMilitar" value="SALVAR"
-							action="#{militarMB.salvar}"
-							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
-							icon="fa fa-save" validateClient="true" update="tabview" />
-					</h:form>
-				</p:tab>
+				<!-- 						<p:commandButton id="salvarMilitar" value="SALVAR" -->
+				<!-- 							action="#{militarMB.salvar}" -->
+				<!-- 							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary" -->
+				<!-- 							icon="fa fa-save" validateClient="true" update="tabview" /> -->
+				<!-- 					</h:form> -->
+				<!-- 				</p:tab> -->
 			</p:tabView>
 
 		</div>

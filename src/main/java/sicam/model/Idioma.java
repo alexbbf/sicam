@@ -4,25 +4,18 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 import org.hibernate.envers.Audited;
 
 @Entity
 @Audited
-public class MilitarCursoNotas {
-
+public class Idioma {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private Double nota;
-	
-	@ManyToOne
-	private Militar militar;
-	
-	@ManyToOne
-	private Curso curso;
+	private String descricao;
 
 	public Integer getId() {
 		return id;
@@ -32,28 +25,12 @@ public class MilitarCursoNotas {
 		this.id = id;
 	}
 
-	public Double getNota() {
-		return nota;
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setNota(Double nota) {
-		this.nota = nota;
-	}
-
-	public Militar getMilitar() {
-		return militar;
-	}
-
-	public void setMilitar(Militar militar) {
-		this.militar = militar;
-	}
-
-	public Curso getCurso() {
-		return curso;
-	}
-
-	public void setCurso(Curso curso) {
-		this.curso = curso;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override
@@ -72,7 +49,7 @@ public class MilitarCursoNotas {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		MilitarCursoNotas other = (MilitarCursoNotas) obj;
+		Idioma other = (Idioma) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -80,8 +57,6 @@ public class MilitarCursoNotas {
 			return false;
 		return true;
 	}
-	
-	
 	
 	
 

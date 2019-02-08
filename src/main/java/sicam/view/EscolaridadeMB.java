@@ -26,6 +26,4 @@ public class EscolaridadeMB {
 		this.escolaridades = escolaridades;
 	}
 	
-	
-
 }
