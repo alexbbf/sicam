@@ -1,14 +1,10 @@
 package sicam.model;
 
-import java.util.Date;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.hibernate.envers.Audited;
 
@@ -24,12 +20,6 @@ public class CursoCivil {
 	private Militar militar;
 	
 	private String nome;
-	
-	@Temporal(TemporalType.DATE)
-	private Date dataInicio;
-	
-	@Temporal(TemporalType.DATE)
-	private Date dataFim;
 	
 	private String instituicao;
 	
@@ -66,22 +56,6 @@ public class CursoCivil {
 
 	public void setMilitar(Militar militar) {
 		this.militar = militar;
-	}
-
-	public Date getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
-	}
-
-	public Date getDataFim() {
-		return dataFim;
-	}
-
-	public void setDataFim(Date dataFim) {
-		this.dataFim = dataFim;
 	}
 
 	public String getInstituicao() {

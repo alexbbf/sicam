@@ -17,6 +17,8 @@ public class AutoCompleteMB {
 	@EJB
 	private EnderecoBusiness enderecoBusiness;
 	
+	
+	
 	public List<String> autoCompleteLograoduro(String s){
 		return enderecoBusiness.autoCompleteLogradouro(s);
 	}

@@ -1,5 +1,6 @@
 package sicam.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -145,6 +146,18 @@ public class Militar {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Anexo foto;
+	
+	public void adicionarCurso(CursoCivil curso){
+		if(cursosCivis == null){
+			cursosCivis = new ArrayList<CursoCivil>();
+		}
+		curso.setMilitar(this); 
+		cursosCivis.add(curso);
+	}
+	
+	public void removerCurso(CursoCivil curso){
+		this.cursosCivis.remove(curso);
+	}
 
 	public Integer getId() {
 		return id;
@@ -519,6 +532,9 @@ public class Militar {
 	
 
 	public List<CursoCivil> getCursosCivis() {
+		if(cursosCivis == null){
+			cursosCivis = new ArrayList<CursoCivil>();
+		}
 		return cursosCivis;
 	}
 
