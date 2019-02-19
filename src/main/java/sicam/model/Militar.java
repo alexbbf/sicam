@@ -132,6 +132,9 @@ public class Militar {
 	
 	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CursoCivil> cursosCivis;
+	
+	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<CursoMilitar> cursosMilitares;
 
 	@ManyToOne
 	private Escolaridade escolaridade;
@@ -147,6 +150,8 @@ public class Militar {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Anexo foto;
 	
+
+	
 	public void adicionarCurso(CursoCivil curso){
 		if(cursosCivis == null){
 			cursosCivis = new ArrayList<CursoCivil>();
@@ -157,6 +162,18 @@ public class Militar {
 	
 	public void removerCurso(CursoCivil curso){
 		this.cursosCivis.remove(curso);
+	}
+	
+	public void adicionarCursoMilitar(CursoMilitar curso){
+		if(cursosMilitares == null){
+			cursosMilitares = new ArrayList<CursoMilitar>();
+		}
+		curso.setMilitar(this);
+		cursosMilitares.add(curso);
+	}
+	
+	public void removerCursoMilitar(CursoMilitar curso){
+		this.cursosMilitares.remove(curso);
 	}
 
 	public Integer getId() {
