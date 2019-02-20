@@ -488,9 +488,20 @@
 							<p:selectOneMenu id="lotacao" converter="entityConverter"
 								value="#{militarMB.militar.setor}" required="true"
 								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
-								requiredMessage="Campo Lotação é obrigatório">
+								requiredMessage="Campo Lotação é obrigatório" immediate="true">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{setorMB.setores}" var="_s"
+									itemLabel="#{_s.sigla}" itemValue="#{_s}" />
+								<p:ajax update="subsetor" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Subsetor" for="subsetor" />
+							<p:selectOneMenu id="subsetor" converter="entityConverter"
+								value="#{militarMB.militar.subsetor}" required="true"
+								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
+								requiredMessage="Campo Subsetor é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{militarMB.militar.setor.subSetores}" var="_s"
 									itemLabel="#{_s.sigla}" itemValue="#{_s}" />
 							</p:selectOneMenu>
 

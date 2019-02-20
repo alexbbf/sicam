@@ -118,6 +118,9 @@ public class Militar {
 
 	@ManyToOne
 	private Setor setor;
+	
+	@ManyToOne
+	private SubSetor subsetor;
 
 	@ManyToOne
 	private Setor adisposicao;
@@ -190,6 +193,16 @@ public class Militar {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	
+	
+
+	public SubSetor getSubsetor() {
+		return subsetor;
+	}
+
+	public void setSubsetor(SubSetor subsetor) {
+		this.subsetor = subsetor;
 	}
 
 	public Sexo getSexo() {

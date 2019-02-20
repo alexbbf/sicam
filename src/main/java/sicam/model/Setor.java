@@ -1,9 +1,15 @@
 package sicam.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.envers.Audited;
 
@@ -18,6 +24,10 @@ public class Setor {
 	private String descricao;
 
 	private String sigla;
+	
+	@OneToMany(mappedBy = "setor", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<SubSetor> subSetores;
+	
 
 	public Integer getId() {
 		return id;
@@ -41,6 +51,18 @@ public class Setor {
 
 	public void setSigla(String sigla) {
 		this.sigla = sigla;
+	}
+	
+
+	public List<SubSetor> getSubSetores() {
+		if(subSetores == null){
+			subSetores = new ArrayList<SubSetor>();
+		}
+		return subSetores;
+	}
+
+	public void setSubSetores(List<SubSetor> subSetores) {
+		this.subSetores = subSetores;
 	}
 
 	@Override
