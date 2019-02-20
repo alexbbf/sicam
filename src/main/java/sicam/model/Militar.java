@@ -582,6 +582,16 @@ public class Militar {
 	public void setDocumentoAgregacao(String documentoAgregacao) {
 		this.documentoAgregacao = documentoAgregacao;
 	}
+	
+	
+
+	public List<CursoMilitar> getCursosMilitares() {
+		return cursosMilitares;
+	}
+
+	public void setCursosMilitares(List<CursoMilitar> cursosMilitares) {
+		this.cursosMilitares = cursosMilitares;
+	}
 
 	@Override
 	public int hashCode() {

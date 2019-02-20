@@ -18,6 +18,12 @@ public class CursoMilitarMB {
 	
 	private CursoMilitar curso = new CursoMilitar();
 	
+	public CursoMilitar pegaCurso(){
+		CursoMilitar c = curso;
+		curso = new CursoMilitar();
+		return c;
+	}
+	
 	public List<String> autoCompleteInstituicaoCursoMilitar(String s) {
 		return business.autoCompleteInstituicaoCursoMilitar(s);
 	}

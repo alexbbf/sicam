@@ -19,7 +19,7 @@ public class NomeCursoMilitarDao {
 
 		return em
 				.createQuery(
-						"SELECT c.descricao FROM NomeCursoMilitar c WHERE UPPER(TRANSLATE(c.descricao,'ÁÃÂÀáãâàÉÈÊéêèÍìÓóÔôÕõÚúÇç','AAAAaaaaEEEeeeIiOoOoOoUuCc')) LIKE '"
+						"SELECT c.descricao FROM NomeCursoMilitar c WHERE UPPER(TRANSLATE(c.descricao,'ÁÃÂÀáãâàÉÈÊéêèÍìÓóÔôÕõÚúÇç','AAAAaaaaEEEeeeIiOoOoOoUuCc')) LIKE '%"
 								+ s + "%'", String.class).getResultList();
 	}
 
