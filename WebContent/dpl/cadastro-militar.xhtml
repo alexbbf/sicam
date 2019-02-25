@@ -38,8 +38,9 @@
 
 							<p:outputLabel value="Raça" for="raca" />
 							<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}"
-								converter="entityConverter" required="true"
+								converter="entityConverter" required="true" 
 								requiredMessage="Campo RAÇA é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" />
 								<f:selectItems value="#{racaMB.racas}" var="_r"
 									itemLabel="#{_r.descricao}" itemValue="#{_r}" />
 							</p:selectOneMenu>

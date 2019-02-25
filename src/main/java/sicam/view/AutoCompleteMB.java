@@ -4,14 +4,14 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import sicam.business.EnderecoBusiness;
 import sicam.model.Bairro;
 import sicam.model.Municipio;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class AutoCompleteMB {
 	
 	@EJB

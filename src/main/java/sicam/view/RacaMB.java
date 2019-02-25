@@ -4,13 +4,13 @@ import java.util.List;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.SessionScoped;
 
 import sicam.business.RacaBusiness;
 import sicam.model.Raca;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class RacaMB {
 
 	@EJB

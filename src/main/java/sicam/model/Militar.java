@@ -153,6 +153,8 @@ public class Militar {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Anexo foto;
 	
+	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private List<Dependente> dependentes;
 
 	
 	public void adicionarCurso(CursoCivil curso){
