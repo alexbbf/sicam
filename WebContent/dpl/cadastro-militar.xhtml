@@ -38,7 +38,7 @@
 
 							<p:outputLabel value="Raça" for="raca" />
 							<p:selectOneMenu id="raca" value="#{militarMB.militar.raca}"
-								converter="entityConverter" required="true" 
+								converter="entityConverter" required="true"
 								requiredMessage="Campo RAÇA é obrigatório">
 								<f:selectItem noSelectionOption="true" itemLabel="" />
 								<f:selectItems value="#{racaMB.racas}" var="_r"
@@ -673,6 +673,16 @@
 								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
 								layout="grid" styleClass="ui-fluid card">
 
+								<p:outputLabel value="Modalidade" for="modalidade" />
+								<p:selectOneMenu id="modalidade" converter="entityConverter"
+									value="#{cursoMilitarMB.curso.modalidade}" required="true"
+									requiredMessage="Campo Modalidade é obrigatório">
+									<f:selectItem noSelectionOption="true" itemLabel=""
+										itemValue="" />
+									<f:selectItems value="#{modalidadeCursoMB.modalidades}"
+										var="_p" itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+								</p:selectOneMenu>
+
 								<p:outputLabel value="Curso" for="cursoMilitar" />
 								<p:autoComplete id="cursoMilitar" required="true"
 									forceSelection="false"
@@ -702,6 +712,145 @@
 									<f:selectItems value="#{modalidadeCursoMB.modalidades}"
 										var="_p" itemLabel="#{_p.descricao}" itemValue="#{_p}" />
 								</p:selectOneMenu>
+
+							</p:panelGrid>
+							<p:commandButton id="adiconarCursoMilitar" value="Adicionar"
+								action="#{militarMB.militar.adicionarCursoMilitar(cursoMilitarMB.pegaCurso())}"
+								styleClass="btn-primary" icon="fa fa-plus" validateClient="true"
+								update="tableCursoMilitar panelCursoMilitar" />
+						</p:panel>
+
+						<hr />
+
+						<p:dataTable id="tableCursoMilitar" var="curso"
+							value="#{militarMB.militar.cursosMilitares}"
+							emptyMessage="Nenhum curso informado">
+							<p:autoUpdate />
+							<p:column headerText="Nome" priority="1">
+								<h:outputText value="#{curso.nome}" />
+							</p:column>
+
+							<p:column headerText="Instituição" priority="3">
+								<h:outputText value="#{curso.instituicao}" />
+							</p:column>
+
+							<p:column headerText="Modalidade" priority="4">
+								<h:outputText value="#{curso.modalidade.descricao}" />
+							</p:column>
+							<p:column headerText="Remover" priority="2">
+								<p:commandButton icon="fa fa-times"
+									action="#{militarMB.militar.removerCurso(curso)}"
+									update="tableCursoMilitar" immediate="true" />
+							</p:column>
+						</p:dataTable>
+
+						<hr />
+
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(9)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" update="tabview"
+							immediate="true" />
+
+					</h:form>
+				</p:tab>
+
+				<p:tab title="Dependentes">
+					<h:form>
+						<p:panel header="Adicione os dependentes" id="panelDependentes">
+							<p:panelGrid columns="4"
+								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+								layout="grid" styleClass="ui-fluid card">
+
+								<p:outputLabel value="Tipo" for="tipo" />
+								<p:selectOneMenu id="tipo" converter="entityConverter"
+									value="#{dependenteMB.dependente.tipoDependente}" required="true"
+									requiredMessage="Campo Tipo é obrigatório">
+									<f:selectItem noSelectionOption="true" itemLabel=""
+										itemValue="" />
+									<f:selectItems value="#{modalidadeCursoMB.modalidades}"
+										var="_p" itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+								</p:selectOneMenu>
+
+								<p:outputLabel value="Nome" for="nomeDependente" />
+								<p:inputText id="nomeDependente" required="true"
+									requiredMessage="Campo Nome é obrigatório!"
+									value="#{dependenteMB.dependente.nome}" />
+
+								<p:outputLabel value="Nome do Pai" for="nomePaiDependente" />
+								<p:inputText id="nomePaiDependente" required="true"
+									requiredMessage="Campo Nome do Pai é obrigatório!"
+									value="#{dependenteMB.dependente.nomePai}" />
+
+								<p:outputLabel value="Nome da Mãe" for="nomeMaeDependente" />
+								<p:inputText id="nomePaiDependente" required="true"
+									requiredMessage="Campo Nome da Mãe é obrigatório!"
+									value="#{dependenteMB.dependente.nomeMae}" />
+
+								<p:outputLabel value="Naturalidade" for="naturalidade" />
+								<p:inputText id="naturalidade" required="true"
+									requiredMessage="Campo Naturalidade é obrigatório!"
+									value="#{dependenteMB.dependente.naturalidade}" />
+
+								<p:outputLabel value="CPF" for="cpf" />
+								<p:inputMask id="cpf" mask="999.999.999-99"
+									value="#{dependenteMB.dependente.cpf}" required="true"
+									requiredMessage="Campo CPF é obrigatório" />
+
+								<p:outputLabel value="PIS/PASEP" for="pispasep" />
+								<p:inputMask mask="999.99999.99-9" id="pispasep"
+									value="#{dependenteMB.dependente.pisPasep}" required="false"
+									requiredMessage="Campo PIS/PASEP é obrigatório" />
+
+								<p:outputLabel value="Tipo sanguíneo" for="tiposanguineo" />
+								<h:panelGrid columns="2"
+									columnClasses="ui-grid-col-2,ui-grid-col-2">
+									<p:selectOneMenu id="tiposanguineo"
+										value="#{dependenteMB.dependente.tipoSanguineo}"
+										required="true" requiredMessage="Campo obrigatório"
+										converterMessage="Tipo inválido">
+										<f:selectItem noSelectionOption="true" itemLabel="" />
+										<f:selectItems value="#{aplicacaoMB.tiposSanguineos}" var="_t"
+											itemLabel="#{_t}" itemValue="#{_t}" />
+									</p:selectOneMenu>
+									<p:selectOneMenu id="fatorrh"
+										value="#{dependenteMB.dependente.fatorRh}" required="true"
+										requiredMessage="Campo obrigatório"
+										converterMessage="Fator inválido">
+										<f:selectItem noSelectionOption="true" itemLabel="" />
+										<f:selectItems value="#{aplicacaoMB.fatoresRH}" var="_f"
+											itemLabel="#{_f.label}" itemValue="#{_f}" />
+									</p:selectOneMenu>
+								</h:panelGrid>
+
+								<p:outputLabel value="Titulo de eleitor" for="tituloeleitor" />
+								<p:inputMask id="tituloeleitor" mask="9999 9999 9999"
+									value="#{dependenteMB.dependente.tituloEleitor.numero}"
+									required="false"
+									requiredMessage="Campo  Título de eleitor obrigatório" />
+
+								<p:outputLabel value="Zona" for="zona" />
+								<p:inputText id="zona"
+									value="#{dependenteMB.dependente.tituloEleitor.zona}"
+									required="false" requiredMessage="Campo Zona é obrigatório" />
+
+								<p:outputLabel value="Seção" for="secao" />
+								<p:inputText id="secao"
+									value="#{dependenteMB.dependente.tituloEleitor.secao}"
+									required="false" requiredMessage="Campo Seção é obrigatório" />
+
+								<p:outputLabel value="Data de Emissão" for="dataEmissao" />
+								<p:inputMask id="dataEmissao"
+									value="#{dependenteMB.dependente.tituloEleitor.dataEmissao}"
+									mask="99/99/9999" required="true"
+									requiredMessage="Campo Data de expedição é obrigatório">
+									<f:convertDateTime pattern="dd/MM/yyyy" />
+								</p:inputMask>
+
+								<p:outputLabel value="Publicação" for="publicacao" />
+								<p:inputText id="publicacao" required="false"
+									requiredMessage="Campo Publicação é obrigatório!"
+									value="#{dependenteMB.dependente.publicacao}" />
 
 							</p:panelGrid>
 							<p:commandButton id="adiconarCursoMilitar" value="Adicionar"
