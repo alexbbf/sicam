@@ -148,6 +148,9 @@ public class Dependente {
 	}
 
 	public TituloEleitor getTituloEleitor() {
+		if (tituloEleitor == null) {
+			tituloEleitor = new TituloEleitor();
+		}
 		return tituloEleitor;
 	}
 

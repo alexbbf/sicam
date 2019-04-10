@@ -703,21 +703,13 @@
 									var="l" itemLabel="#{l}" itemValue="#{l}">
 								</p:autoComplete>
 
-								<p:outputLabel value="Modalidade" for="modalidade" />
-								<p:selectOneMenu id="modalidade" converter="entityConverter"
-									value="#{cursoMilitarMB.curso.modalidade}" required="true"
-									requiredMessage="Campo Modalidade é obrigatório">
-									<f:selectItem noSelectionOption="true" itemLabel=""
-										itemValue="" />
-									<f:selectItems value="#{modalidadeCursoMB.modalidades}"
-										var="_p" itemLabel="#{_p.descricao}" itemValue="#{_p}" />
-								</p:selectOneMenu>
+							
 
 							</p:panelGrid>
 							<p:commandButton id="adiconarCursoMilitar" value="Adicionar"
 								action="#{militarMB.militar.adicionarCursoMilitar(cursoMilitarMB.pegaCurso())}"
 								styleClass="btn-primary" icon="fa fa-plus" validateClient="true"
-								update="tableCursoMilitar panelCursoMilitar" />
+								update="tableCursoMilitar" />
 						</p:panel>
 
 						<hr />
@@ -783,7 +775,7 @@
 									value="#{dependenteMB.dependente.nomePai}" />
 
 								<p:outputLabel value="Nome da Mãe" for="nomeMaeDependente" />
-								<p:inputText id="nomePaiDependente" required="true"
+								<p:inputText id="nomeMaeDependente" required="true"
 									requiredMessage="Campo Nome da Mãe é obrigatório!"
 									value="#{dependenteMB.dependente.nomeMae}" />
 
@@ -856,7 +848,7 @@
 							<p:commandButton id="adiconarCursoMilitar" value="Adicionar"
 								action="#{militarMB.militar.adicionarCursoMilitar(cursoMilitarMB.pegaCurso())}"
 								styleClass="btn-primary" icon="fa fa-plus" validateClient="true"
-								update="tableCursoMilitar panelCursoMilitar" />
+								update="tableCursoMilitar" />
 						</p:panel>
 
 						<hr />

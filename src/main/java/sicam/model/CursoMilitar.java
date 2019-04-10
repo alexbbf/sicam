@@ -21,6 +21,7 @@ public class CursoMilitar {
 	
 	private String nome;
 	
+	
 	private String instituicao;
 	
 	@ManyToOne
@@ -65,6 +66,7 @@ public class CursoMilitar {
 	public void setModalidade(ModalidadeCurso modalidade) {
 		this.modalidade = modalidade;
 	}
+	
 
 	@Override
 	public int hashCode() {
