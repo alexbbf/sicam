@@ -845,33 +845,30 @@
 									value="#{dependenteMB.dependente.publicacao}" />
 
 							</p:panelGrid>
-							<p:commandButton id="adiconarCursoMilitar" value="Adicionar"
-								action="#{militarMB.militar.adicionarCursoMilitar(cursoMilitarMB.pegaCurso())}"
+							<p:commandButton id="adiconarDependente" value="Adicionar"
+								action="#{militarMB.militar.adicionarDependente(dependenteMB.pegaDependente())}"
 								styleClass="btn-primary" icon="fa fa-plus" validateClient="true"
-								update="tableCursoMilitar" />
+								update="tableDependentes" />
 						</p:panel>
 
 						<hr />
 
-						<p:dataTable id="tableCursoMilitar" var="curso"
-							value="#{militarMB.militar.cursosMilitares}"
-							emptyMessage="Nenhum curso informado">
+						<p:dataTable id="tableDependentes" var="dependente"
+							value="#{militarMB.militar.dependentes}"
+							emptyMessage="Nenhum dependente informado">
 							<p:autoUpdate />
 							<p:column headerText="Nome" priority="1">
-								<h:outputText value="#{curso.nome}" />
+								<h:outputText value="#{dependente.nome}" />
 							</p:column>
 
-							<p:column headerText="Instituição" priority="3">
-								<h:outputText value="#{curso.instituicao}" />
+							<p:column headerText="CPF" priority="2">
+								<h:outputText value="#{dependente.cpf}" />
 							</p:column>
 
-							<p:column headerText="Modalidade" priority="4">
-								<h:outputText value="#{curso.modalidade.descricao}" />
-							</p:column>
 							<p:column headerText="Remover" priority="2">
 								<p:commandButton icon="fa fa-times"
-									action="#{militarMB.militar.removerCurso(curso)}"
-									update="tableCursoMilitar" immediate="true" />
+									action="#{militarMB.militar.removerDependente(dependente)}"
+									update="tableDependentes" immediate="true" />
 							</p:column>
 						</p:dataTable>
 

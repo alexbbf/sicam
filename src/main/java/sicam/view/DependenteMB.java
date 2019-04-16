@@ -19,6 +19,11 @@ public class DependenteMB {
 		this.dependente = dependente;
 	}
 	
+	public Dependente pegaDependente(){
+		Dependente d = dependente;
+		dependente = new Dependente();
+		return d;
+	}
 	
 
 }

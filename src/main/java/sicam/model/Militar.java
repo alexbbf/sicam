@@ -118,7 +118,7 @@ public class Militar {
 
 	@ManyToOne
 	private Setor setor;
-	
+
 	@ManyToOne
 	private SubSetor subsetor;
 
@@ -127,15 +127,15 @@ public class Militar {
 
 	@ManyToOne
 	private LocalAgregacao localAgregacao;
-	
+
 	private String documentoAgregacao;
 
 	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Permissao> permissoes;
-	
+
 	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CursoCivil> cursosCivis;
-	
+
 	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<CursoMilitar> cursosMilitares;
 
@@ -152,32 +152,43 @@ public class Militar {
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Anexo foto;
-	
+
 	@OneToMany(mappedBy = "militar", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private List<Dependente> dependentes;
 
-	
-	public void adicionarCurso(CursoCivil curso){
-		if(cursosCivis == null){
+	public void adicionarCurso(CursoCivil curso) {
+		if (cursosCivis == null) {
 			cursosCivis = new ArrayList<CursoCivil>();
 		}
-		curso.setMilitar(this); 
+		curso.setMilitar(this);
 		cursosCivis.add(curso);
 	}
-	
-	public void removerCurso(CursoCivil curso){
+
+	public void removerCurso(CursoCivil curso) {
 		this.cursosCivis.remove(curso);
 	}
-	
-	public void adicionarCursoMilitar(CursoMilitar curso){
-		if(cursosMilitares == null){
+
+	public void adicionarCursoMilitar(CursoMilitar curso) {
+		if (cursosMilitares == null) {
 			cursosMilitares = new ArrayList<CursoMilitar>();
 		}
 		curso.setMilitar(this);
 		cursosMilitares.add(curso);
 	}
-	
-	public void removerCursoMilitar(CursoMilitar curso){
+
+	public void adicionarDependente(Dependente dependente) {
+		if (dependentes == null) {
+			dependentes = new ArrayList<Dependente>();
+		}
+		dependente.setMilitar(this);
+		dependentes.add(dependente);
+	}
+
+	public void removerDependente(Dependente dependente) {
+		this.dependentes.remove(dependente);
+	}
+
+	public void removerCursoMilitar(CursoMilitar curso) {
 		this.cursosMilitares.remove(curso);
 	}
 
@@ -196,8 +207,6 @@ public class Militar {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
 
 	public SubSetor getSubsetor() {
 		return subsetor;
@@ -561,10 +570,9 @@ public class Militar {
 	public void setFoto(Anexo foto) {
 		this.foto = foto;
 	}
-	
 
 	public List<CursoCivil> getCursosCivis() {
-		if(cursosCivis == null){
+		if (cursosCivis == null) {
 			cursosCivis = new ArrayList<CursoCivil>();
 		}
 		return cursosCivis;
@@ -597,8 +605,14 @@ public class Militar {
 	public void setDocumentoAgregacao(String documentoAgregacao) {
 		this.documentoAgregacao = documentoAgregacao;
 	}
-	
-	
+
+	public List<Dependente> getDependentes() {
+		return dependentes;
+	}
+
+	public void setDependentes(List<Dependente> dependentes) {
+		this.dependentes = dependentes;
+	}
 
 	public List<CursoMilitar> getCursosMilitares() {
 		return cursosMilitares;
