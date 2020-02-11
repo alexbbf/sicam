@@ -2,6 +2,7 @@ package sicam.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -46,7 +47,7 @@ public class Dependente {
 
 	private String naturalidade;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private TituloEleitor tituloEleitor;
 
 	@Enumerated(EnumType.STRING)
