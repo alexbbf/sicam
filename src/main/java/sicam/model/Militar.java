@@ -166,6 +166,7 @@ public class Militar {
 
 	public void removerCurso(CursoCivil curso) {
 		this.cursosCivis.remove(curso);
+		System.out.println("chegou"+curso.getNome());
 	}
 
 	public void adicionarCursoMilitar(CursoMilitar curso) {

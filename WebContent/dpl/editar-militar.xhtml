@@ -40,7 +40,9 @@
 
 						<p:commandButton icon="ui-icon-search"
 							styleClass="btn-block btn-default"
-							action="#{militarMB.pesquisar()}" update="tablemilitares" />
+							action="#{militarMB.pesquisar()}">
+							<!-- 							<p:ajax update="tablemilitares"  /> -->
+						</p:commandButton>
 
 					</h:panelGrid>
 
@@ -52,6 +54,7 @@
 								value="#{militarMB.militaresDTO}" styleClass="box-primary"
 								selection="#{militarMB.militarDTOSelecionado}"
 								emptyMessage="Nenhum encontrado">
+								<p:autoUpdate disabled="false" />
 								<p:ajax event="rowSelect"
 									listener="#{militarMB.selecionarDTO()}" update=":tabview" />
 
@@ -412,7 +415,7 @@
 							<p:outputLabel value="Banco" for="banco" />
 							<p:selectOneMenu id="banco"
 								value="#{militarMB.militar.dadosBancarios.banco}"
-								required="false" requiredMessage="Campo Banco é obrigatório"
+								required="true" requiredMessage="Campo Banco é obrigatório"
 								converter="entityConverter">
 								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
 								<f:selectItems value="#{bancoMB.bancos}" var="_b"
@@ -422,12 +425,12 @@
 							<p:outputLabel value="Agência" for="agencia" />
 							<p:inputText id="agencia"
 								value="#{militarMB.militar.dadosBancarios.agencia}"
-								required="false" requiredMessage="Campo obrigatório" />
+								required="true" requiredMessage="Campo obrigatório" />
 
 							<p:outputLabel value="Conta" for="conta" />
 							<p:inputText id="conta"
 								value="#{militarMB.militar.dadosBancarios.conta}"
-								required="false" requiredMessage="Campo obrigatório" />
+								required="true" requiredMessage="Campo obrigatório" />
 
 						</p:panelGrid>
 						<p:commandButton id="salvarMilitar" value="SALVAR"
@@ -534,6 +537,33 @@
 								completeMethod="#{localAgregacaoMB.autoCompleteLocalAgregacao}"
 								var="l" itemLabel="#{l.descricao}" itemValue="#{l}" />
 
+							<p:outputLabel value="Documento de Agregação" for="docagregacao" />
+							<p:inputText id="docagregacao" required="true"
+								requiredMessage="Campo Documento de Agregação é obrigatório"
+								value="#{militarMB.militar.documentoAgregacao}"
+								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.agregado}" />
+
+							<p:outputLabel value="Lotação" for="lotacao" />
+							<p:selectOneMenu id="lotacao" converter="entityConverter"
+								value="#{militarMB.militar.setor}" required="true"
+								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
+								requiredMessage="Campo Lotação é obrigatório" immediate="true">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{setorMB.setores}" var="_s"
+									itemLabel="#{_s.sigla}" itemValue="#{_s}" />
+								<p:ajax update="subsetor" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Subsetor" for="subsetor" />
+							<p:selectOneMenu id="subsetor" converter="entityConverter"
+								value="#{militarMB.militar.subsetor}" required="true"
+								disabled="#{militarMB.militar.situacaoMilitarAtiva ne aplicacaoMB.atividade}"
+								requiredMessage="Campo Subsetor é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{militarMB.militar.setor.subSetores}"
+									var="_s" itemLabel="#{_s.sigla}" itemValue="#{_s}" />
+							</p:selectOneMenu>
+
 
 
 						</p:panelGrid>
@@ -544,7 +574,7 @@
 					</h:form>
 				</p:tab>
 
-				<p:tab title="Escolaridade">
+				<p:tab title="Formação">
 					<h:form>
 						<p:panelGrid columns="4"
 							columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
@@ -559,14 +589,140 @@
 									itemLabel="#{_p.descricao}" itemValue="#{_p}" />
 							</p:selectOneMenu>
 
+							<p:outputLabel value="Segundo Idioma" for="segundoIdioma" />
+							<p:selectOneMenu id="segundoIdioma" converter="entityConverter"
+								value="#{militarMB.militar.segundoIdioma}" required="false"
+								requiredMessage="Campo Segundo Idioma é obrigatório">
+								<f:selectItem itemLabel="Nenhum" itemValue="#{null}" />
+								<f:selectItems value="#{idiomaMB.idiomas}" var="_p"
+									itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+							</p:selectOneMenu>
+
+							<p:outputLabel value="Nível do Idioma" for="nivelIdioma" />
+							<p:selectOneMenu id="nivelIdioma" converter="entityConverter"
+								value="#{militarMB.militar.nivelIdioma}" required="false"
+								requiredMessage="Campo Nivel do Idioma é obrigatório">
+								<f:selectItem noSelectionOption="true" itemLabel="" itemValue="" />
+								<f:selectItems value="#{aplicacaoMB.nivelIdioma}" var="_p"
+									itemLabel="#{_p.label}" itemValue="#{_p}" />
+							</p:selectOneMenu>
+
+
+
 						</p:panelGrid>
 						<hr />
-					
+
 
 						<p:commandButton id="salvarMilitar" value="SALVAR"
 							action="#{militarMB.salvar}"
 							actionListener="#{tabViewMB.nextTab(5)}" styleClass="btn-primary"
 							icon="fa fa-save" validateClient="true" update="tabview" />
+					</h:form>
+				</p:tab>
+				<p:tab title="Curso Civis">
+					<h:form>
+						<p:panel header="Adicione aqui os cursos civis" id="panelCurso">
+							<p:panelGrid columns="4"
+								columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+								layout="grid" styleClass="ui-fluid card">
+
+								<p:outputLabel value="Curso" for="curso" />
+								<p:autoComplete id="curso" required="true"
+									forceSelection="false"
+									requiredMessage="Campo Curso é obrigatório!"
+									placeholder="Ex: Ciência da Computação"
+									value="#{cursoCivilMB.curso.nome}"
+									completeMethod="#{cursoCivilMB.autoCompleteNomeCursoCivil}"
+									var="l" itemLabel="#{l}" itemValue="#{l}">
+								</p:autoComplete>
+
+								<p:outputLabel value="Instituição" for="instituicao" />
+								<p:autoComplete id="instituicao" required="true"
+									forceSelection="false"
+									requiredMessage="Campo Instituicao é obrigatório!"
+									placeholder="Ex: UFRR"
+									value="#{cursoCivilMB.curso.instituicao}"
+									completeMethod="#{cursoCivilMB.autoCompleteInstituicaoCursoCivil}"
+									var="l" itemLabel="#{l}" itemValue="#{l}">
+								</p:autoComplete>
+
+								<p:outputLabel value="Area do Curso" for="areacurso" />
+								<p:selectOneMenu id="areacurso" converter="entityConverter"
+									value="#{cursoCivilMB.curso.areaCurso}" required="true"
+									requiredMessage="Campo Area do Curso é obrigatório">
+									<f:selectItem noSelectionOption="true" itemLabel=""
+										itemValue="" />
+									<f:selectItems value="#{areaCursoMB.areasCurso}" var="_p"
+										itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+								</p:selectOneMenu>
+
+								<p:outputLabel value="Tipo de Curso" for="tipocurso" />
+								<p:selectOneMenu id="tipocurso" converter="entityConverter"
+									value="#{cursoCivilMB.curso.tipoCurso}" required="true"
+									requiredMessage="Campo Tipo de Curso é obrigatório">
+									<f:selectItem noSelectionOption="true" itemLabel=""
+										itemValue="" />
+									<f:selectItems value="#{tipoCursoMB.tiposCurso}" var="_p"
+										itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+								</p:selectOneMenu>
+
+								<p:outputLabel value="Situação" for="situacaocurso" />
+								<p:selectOneMenu id="situacaocurso" converter="entityConverter"
+									value="#{cursoCivilMB.curso.situacaoCurso}" required="true"
+									requiredMessage="Campo Situação é obrigatório">
+									<f:selectItem noSelectionOption="true" itemLabel=""
+										itemValue="" />
+									<f:selectItems value="#{situacaoCursoMB.situacoesCurso}"
+										var="_p" itemLabel="#{_p.descricao}" itemValue="#{_p}" />
+								</p:selectOneMenu>
+
+							</p:panelGrid>
+							<p:commandButton id="adiconarCurso" value="Adicionar"
+								action="#{militarMB.militar.adicionarCurso(cursoCivilMB.pegaCurso())}"
+								styleClass="btn-primary" icon="fa fa-plus" validateClient="true"
+								update="tableCursoCivil panelCurso" />
+						</p:panel>
+
+						<hr />
+
+						<p:dataTable id="tableCursoCivil" var="curso"
+							value="#{militarMB.militar.cursosCivis}"
+							emptyMessage="Nenhum curso informado">
+							<p:autoUpdate />
+							<p:column headerText="Nome" priority="1">
+								<h:outputText value="#{curso.nome}" />
+							</p:column>
+
+							<p:column headerText="Instituição" priority="3">
+								<h:outputText value="#{curso.instituicao}" />
+							</p:column>
+
+							<p:column headerText="Área" priority="4">
+								<h:outputText value="#{curso.areaCurso.descricao}" />
+							</p:column>
+
+							<p:column headerText="Tipo" priority="5">
+								<h:outputText value="#{curso.tipoCurso.descricao}" />
+							</p:column>
+
+							<p:column headerText="Situação" priority="6">
+								<h:outputText value="#{curso.situacaoCurso.descricao}" />
+							</p:column>
+							<p:column headerText="Remover" priority="2">
+								<p:commandButton icon="fa fa-times"
+									action="#{militarMB.militar.removerCurso(curso)}"
+									update="tableCursoCivil" immediate="true" />
+							</p:column>
+						</p:dataTable>
+
+						<hr />
+
+						<p:commandButton id="salvarMilitar" value="SALVAR"
+							action="#{militarMB.salvar}"
+							actionListener="#{tabViewMB.nextTab(8)}" styleClass="btn-primary"
+							icon="fa fa-save" validateClient="true" update="tabview"
+							immediate="true" />
+
 					</h:form>
 				</p:tab>
 			</p:tabView>
